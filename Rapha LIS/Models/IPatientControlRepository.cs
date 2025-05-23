@@ -15,5 +15,7 @@ namespace Rapha_LIS.Models
         List<FilteredPatientModel> GetByFilteredName(string value);
         int InsertEmptyPatient();
         void SaveOrUpdatePatient(PatientModel patient);
+        List<PatientModel> GetBarcodeIdsByPatientIds(List<int> patientIds);
+
     }
 }

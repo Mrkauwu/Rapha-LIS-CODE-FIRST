@@ -38,7 +38,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SigninView));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
-            checkBox1 = new CheckBox();
+            checkBox = new CheckBox();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             btnSignin = new Guna.UI2.WinForms.Guna2Button();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -57,7 +57,7 @@
             txtUsername.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtUsername.Font = new Font("Segoe UI", 9F);
             txtUsername.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtUsername.Location = new Point(52, 228);
+            txtUsername.Location = new Point(53, 230);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "";
             txtUsername.SelectedText = "";
@@ -66,14 +66,15 @@
             txtUsername.TabIndex = 1;
             txtUsername.TextChanged += txtUsername_TextChanged;
             // 
-            // checkBox1
+            // checkBox
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(53, 343);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 2;
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBox.AutoSize = true;
+            checkBox.Location = new Point(56, 344);
+            checkBox.Name = "checkBox";
+            checkBox.Size = new Size(15, 14);
+            checkBox.TabIndex = 2;
+            checkBox.UseVisualStyleBackColor = true;
+            checkBox.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // txtPassword
             // 
@@ -87,13 +88,14 @@
             txtPassword.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             txtPassword.Font = new Font("Segoe UI", 9F);
             txtPassword.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPassword.Location = new Point(52, 300);
+            txtPassword.Location = new Point(52, 298);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges4;
             txtPassword.Size = new Size(322, 35);
             txtPassword.TabIndex = 1;
+            txtPassword.UseSystemPasswordChar = true;
             // 
             // btnSignin
             // 
@@ -132,7 +134,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(816, 489);
             Controls.Add(btnSignin);
-            Controls.Add(checkBox1);
+            Controls.Add(checkBox);
             Controls.Add(txtPassword);
             Controls.Add(txtUsername);
             Controls.Add(guna2PictureBox1);
@@ -152,7 +154,7 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
-        private CheckBox checkBox1;
+        private CheckBox checkBox;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2Button btnSignin;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;

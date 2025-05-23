@@ -22,17 +22,15 @@ namespace Rapha_LIS.Repositories
             _context = context;
         }
 
-        public void DeleteUser(int Id)
+        public void DeleteUser(List<int> ids)
         {
-            var user = _context.Users.Find(Id); // Corrected 'id' to 'Id' to match the method parameter
-            if (user != null)
+            var user = _context.Users.Where(p => ids.Contains(p.Id)).ToList();
+            if (user.Any())
             {
-                _context.Users.Remove(user);
+                _context.Users.RemoveRange(user);
                 _context.SaveChanges();
             }
         }
-
-
 
         public List<UserModel> GetAll()
         {

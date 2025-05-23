@@ -18,6 +18,7 @@ namespace Rapha_LIS.Views
         event EventHandler SearchRequestedByName;
         event EventHandler AddPatientRequested;
         event EventHandler DeletePatientRequested;
+        event EventHandler PrintBarcodeRequested;
         event EventHandler<CellEditEventArgs>? CellValueEdited;
         List<int> SelectedPatient { get; }
         void BindPatientControlList(BindingSource patientControlList);

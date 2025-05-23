@@ -33,7 +33,6 @@ namespace Rapha_LIS.Repositories
             {
                 patient.MedTech = examinerName;
                 await _context.SaveChangesAsync();
-                MessageBox.Show($"Patient record updated. MedTech: {examinerName}");
             }
             else
             {
@@ -43,19 +42,9 @@ namespace Rapha_LIS.Repositories
 
         public PatientModel? GetPatientByHRI(string id)
         {
-            // Corrected variable name from 'barcodeId' to 'id' to match the method parameter
             var patient = _context.Patients
                 .AsNoTracking() // no tracking for read-only
                 .FirstOrDefault(p => p.BarcodeID == id);
-
-            if (patient != null)
-            {
-                MessageBox.Show($"User Found: {patient.Name}");
-            }
-            else
-            {
-                MessageBox.Show("User not found in GetUserById!");
-            }
 
             return patient;
         }
@@ -245,6 +234,42 @@ namespace Rapha_LIS.Repositories
             return _context.Test.ToList();
         }
 
+        public List<PatientModel> GetBarcodeIdsByPatientIds(List<int> patientIds)
+        {
+            return _context.Patients
+                .Where(p => patientIds.Contains(p.Id))
+                .OrderBy(p => p.DateCreated) // oldest to newest
+                .Select(p => new PatientModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Age = p.Age ?? 0,
+                    BarcodeID = p.BarcodeID,
+                    DateCreated = p.DateCreated
+                })
+                .ToList();
+        }
+
+        public List<PatientModel> PrintPatientResult(List<int> patientIds)
+        {
+            return _context.Patients
+                .Where(p => patientIds.Contains(p.Id))
+                .OrderBy(p => p.DateCreated) // oldest to newest
+                .Select(p => new PatientModel
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Age = p.Age ?? 0,
+                    Sex = p.Sex,
+                    Physician = p.Physician,
+                    MedTech = p.MedTech,
+                    Test = p.Test,
+                    TestResult = p.TestResult,
+                    NormalValue = p.NormalValue,
+                    DateCreated = p.DateCreated
+                })
+                .ToList();
+        }
     }
 
     static class SqlDataReaderExtensions

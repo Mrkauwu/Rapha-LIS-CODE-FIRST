@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestListView));
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             clbTests = new CheckedListBox();
             pictureBox1 = new PictureBox();
-            btnSave = new Button();
             txtSearch = new Guna.UI2.WinForms.Guna2TextBox();
+            btnSave = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -44,7 +46,7 @@
             clbTests.FormattingEnabled = true;
             clbTests.Location = new Point(21, 70);
             clbTests.Name = "clbTests";
-            clbTests.Size = new Size(305, 220);
+            clbTests.Size = new Size(305, 274);
             clbTests.TabIndex = 0;
             clbTests.SelectedIndexChanged += checkedListBox1_SelectedIndexChanged;
             // 
@@ -59,18 +61,10 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // btnSave
-            // 
-            btnSave.Location = new Point(242, 344);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(84, 32);
-            btnSave.TabIndex = 2;
-            btnSave.Text = "button1";
-            btnSave.UseVisualStyleBackColor = true;
-            // 
             // txtSearch
             // 
-            txtSearch.CustomizableEdges = customizableEdges3;
+            txtSearch.BackColor = Color.FromArgb(178, 220, 239);
+            txtSearch.CustomizableEdges = customizableEdges1;
             txtSearch.DefaultText = "";
             txtSearch.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             txtSearch.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -83,17 +77,43 @@
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "";
             txtSearch.SelectedText = "";
-            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            txtSearch.ShadowDecoration.CustomizableEdges = customizableEdges2;
             txtSearch.Size = new Size(305, 27);
             txtSearch.TabIndex = 3;
+            // 
+            // btnSave
+            // 
+            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSave.BackColor = Color.White;
+            btnSave.BorderColor = Color.FromArgb(213, 218, 223);
+            btnSave.BorderRadius = 2;
+            btnSave.BorderThickness = 1;
+            btnSave.CustomizableEdges = customizableEdges3;
+            btnSave.DisabledState.BorderColor = Color.DarkGray;
+            btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSave.FillColor = Color.White;
+            btnSave.Font = new Font("Segoe UI", 9F);
+            btnSave.ForeColor = Color.Black;
+            btnSave.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            btnSave.HoverState.FillColor = Color.Transparent;
+            btnSave.Image = (Image)resources.GetObject("btnSave.Image");
+            btnSave.Location = new Point(212, 361);
+            btnSave.Name = "btnSave";
+            btnSave.PressedColor = Color.Transparent;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnSave.Size = new Size(114, 26);
+            btnSave.TabIndex = 20;
+            btnSave.Text = "Save Test";
             // 
             // TestListView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(361, 402);
-            Controls.Add(txtSearch);
             Controls.Add(btnSave);
+            Controls.Add(txtSearch);
             Controls.Add(clbTests);
             Controls.Add(pictureBox1);
             Name = "TestListView";
@@ -106,7 +126,7 @@
 
         private CheckedListBox clbTests;
         private PictureBox pictureBox1;
-        private Button btnSave;
         public Guna.UI2.WinForms.Guna2TextBox txtSearch;
+        private Guna.UI2.WinForms.Guna2Button btnSave;
     }
 }

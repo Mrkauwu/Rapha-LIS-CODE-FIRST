@@ -14,6 +14,8 @@ namespace Rapha_LIS.Views
 
         event EventHandler UserSearchRequestedByName;
         event EventHandler UserAddRequested;
+        event EventHandler DeleteUserRequested;
+        List<int> SelectedUser { get; }
         event EventHandler<CellEditEventArgs>? UserCellValueEdited;
 
         void UserShowMessage(string message, string title = "Info");

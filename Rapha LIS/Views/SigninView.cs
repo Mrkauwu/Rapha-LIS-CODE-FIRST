@@ -69,6 +69,11 @@ namespace Rapha_LIS.Views
 
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPassword.UseSystemPasswordChar = !checkBox.Checked;
+        }
+
         public string? Username
         {
             get { return txtUsername.Text; }

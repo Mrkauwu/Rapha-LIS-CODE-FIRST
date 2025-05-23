@@ -10,10 +10,11 @@ namespace Rapha_LIS.Views
      public interface IPatientAnalyticsView
     {
         string SearchQueryByHIR { get; set; }
-        event EventHandler? SearchRequestedByHIR;
+        event EventHandler? PrintResultRequested;
         event EventHandler? AnalyticsActionRequested;
         event EventHandler<CellEditEventArgs>? AnalyticsCellValueEdited;
-
+        event EventHandler? SearchRequestedByHIR;
+        List<int> SelectedToPrint { get; }
         void BindPatientAnalyticsList(BindingSource patientAnalyticsList);
         void Show();
     }

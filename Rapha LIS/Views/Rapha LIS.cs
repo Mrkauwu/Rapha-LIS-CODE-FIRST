@@ -28,6 +28,7 @@ namespace Rapha_LIS.Views
             InitializeComponent();
             AssociateAndRaiseViewEvents();
 
+
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -43,8 +44,6 @@ namespace Rapha_LIS.Views
             dgvPatientControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvUserControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvAnalyticsPatients.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-
-            dgvPatientControl.Columns["checkBox"].DisplayIndex = 0;
         }
 
 
@@ -56,6 +55,8 @@ namespace Rapha_LIS.Views
             btnAddPatient.Click += (s, e) => AddPatientRequested?.Invoke(this, EventArgs.Empty);
             txtPatientControlSearch.TextChanged += (s, e) => StartSearchTimer("Patient");
             btnDelete.Click += (s, e) => DeletePatientRequested?.Invoke(this, EventArgs.Empty);
+            btnPrintBarcode.Click += (s, e) => PrintBarcodeRequested?.Invoke(this, EventArgs.Empty);
+
             dgvPatientControl.CellValueChanged += (_, e) =>
             {
                 if (e.RowIndex >= 0)
@@ -65,6 +66,7 @@ namespace Rapha_LIS.Views
 
             // User Control TabPage
             btnAddUser.Click += (s, e) => UserAddRequested?.Invoke(this, EventArgs.Empty);
+            btnDeleteUser.Click += (s, e) => DeleteUserRequested?.Invoke(this, EventArgs.Empty);
 
             // Update all references to the field in the file:  
             txtUserControlSearch.TextChanged += (s, e) => StartSearchTimer("User");
@@ -76,6 +78,8 @@ namespace Rapha_LIS.Views
 
             // Analytics TabPage
             txtAnalyticsSearch.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) SearchRequestedByHIR?.Invoke(this, EventArgs.Empty); };
+            button1.Click += (s, e) => SearchRequestedByHIR?.Invoke(this, EventArgs.Empty);
+            btnPrintResult.Click += (s, e) => PrintResultRequested?.Invoke(this, EventArgs.Empty);
             dgvAnalyticsPatients.CellValueChanged += (_, e) =>
             {
                 if (e.RowIndex >= 0)
@@ -144,7 +148,13 @@ namespace Rapha_LIS.Views
             dgvUserControl.DataSource = userControlList;
         }
 
-
+        public List<int> SelectedUser =>
+            dgvUserControl.SelectedRows
+            .Cast<DataGridViewRow>()
+            .Where(r => !r.IsNewRow)
+            .Select(r => int.TryParse(r.Cells["Id"].Value?.ToString(), out var id) ? id : 0)
+            .Where(id => id != 0)
+            .ToList();
 
         public string SearchQueryByHIR
         {
@@ -158,27 +168,22 @@ namespace Rapha_LIS.Views
 
         }
 
-        private void dgvAnalyticsPatients_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            AnalyticsActionRequested?.Invoke(this, EventArgs.Empty);
-        }
-
-        //Patient Result
-
 
         public List<int> SelectedPatient =>
-            dgvPatientControl.Rows
-                .Cast<DataGridViewRow>()
-                .Where(r => !r.IsNewRow && (r.Cells["CheckBox"].Value?.ToString() == "True"))
-                .Select(r => int.TryParse(r.Cells["Id"].Value?.ToString(), out var id) ? id : 0)
-                .Where(id => id != 0)
-                .ToList();
+            dgvPatientControl.SelectedRows
+            .Cast<DataGridViewRow>()
+            .Where(r => !r.IsNewRow)
+            .Select(r => int.TryParse(r.Cells["Id"].Value?.ToString(), out var id) ? id : 0)
+            .Where(id => id != 0)
+            .ToList();
 
-
-        private void Rapha_LIS_Load(object sender, EventArgs e)
-        {
-
-        }
+        public List<int> SelectedToPrint =>
+            dgvAnalyticsPatients.SelectedRows
+            .Cast<DataGridViewRow>()
+            .Where(r => !r.IsNewRow)
+            .Select(r => int.TryParse(r.Cells["Id"].Value?.ToString(), out var id) ? id : 0)
+            .Where(id => id != 0)
+            .ToList();
 
         public void ShowMessage(string message, string title = "Info")
         {
@@ -188,15 +193,6 @@ namespace Rapha_LIS.Views
         private void dgvPatientControl_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             e.Control.Enabled = dgvPatientControl.CurrentCell.ColumnIndex != dgvPatientControl.Columns["Test"].Index;
-        }
-
-        private void dgvPatientControl_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvPatientControl.Columns[e.ColumnIndex].Name == "CheckBox" && e.RowIndex >= 0)
-            {
-                var cell = dgvPatientControl.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                cell.Value = !(cell.Value is bool b && b);
-            }
         }
 
         private void dgvPatientControl_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -216,20 +212,7 @@ namespace Rapha_LIS.Views
             MessageBox.Show(message, title);
         }
 
-        private void dgvPatientControl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-
-        }
-
-        private void txtPatientControlSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         public void UpdateRowWithSelectedTests(int rowIndex, List<TestModel> selectedTests)
         {
@@ -241,21 +224,102 @@ namespace Rapha_LIS.Views
             row.Cells["TestResult"].Value = string.Join(Environment.NewLine, selectedTests.Select(_ => "Pending"));
         }
 
+        private void Rapha_LIS_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvAnalyticsPatients_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Column header mapping
+            var headers = new Dictionary<string, string>
+        {
+            { "TestResult", "Result" },
+            { "NormalValue", "Normal Value" },
+            { "LeukocytesResult", "Leukocytes Result" },
+            { "LeukocytesNormalValue", "Normal Value" },
+            { "Age", "Patient Age" },
+            { "Sex", "Gender" },
+        };
+
+            foreach (var pair in headers)
+            {
+                if (dgvAnalyticsPatients.Columns.Contains(pair.Key))
+                    dgvAnalyticsPatients.Columns[pair.Key].HeaderText = pair.Value;
+            }
+
+
+            if (dgvAnalyticsPatients.Columns.Contains("BarcodeID"))
+                dgvAnalyticsPatients.Columns["BarcodeID"].Visible = false;
+
+            string[] readOnlyColumns = { "Id", "MedTech", "NormalValue", "DateCreated", "LeukocytesNormalValue", "Physician", "Sex", "Age", "Name", "Test" };
+
+            foreach (var colName in readOnlyColumns)
+            {
+                if (dgvAnalyticsPatients.Columns.Contains(colName))
+                    dgvAnalyticsPatients.Columns[colName].ReadOnly = true;
+            }
+
+        }
+
+        private void dgvUserControl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            if (dgvUserControl.Columns.Contains("Sex"))
+                dgvUserControl.Columns["Sex"].HeaderText = "Gender";
+        }
+
+        private void dgvPatientControl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Column header mapping
+            var headers = new Dictionary<string, string>
+        {
+            { "TestResult", "Result" },
+            { "NormalValue", "Normal Value" },
+            { "LeukocytesResult", "Leukocytes Result" },
+            { "LeukocytesNormalValue", "Normal Value" },
+            { "Age", "Patient Age" },
+            { "Sex", "Gender" },
+        };
+
+            foreach (var pair in headers)
+            {
+                if (dgvPatientControl.Columns.Contains(pair.Key))
+                    dgvPatientControl.Columns[pair.Key].HeaderText = pair.Value;
+            }
+
+
+            if (dgvPatientControl.Columns.Contains("BarcodeID"))
+                dgvPatientControl.Columns["BarcodeID"].Visible = false;
+
+            string[] readOnlyColumns = { "Id", "MedTech", "NormalValue", "DateCreated", "LeukocytesNormalValue", "TestResult", "LeukocytesResult" };
+
+            foreach (var colName in readOnlyColumns)
+            {
+                if (dgvPatientControl.Columns.Contains(colName))
+                    dgvPatientControl.Columns[colName].ReadOnly = true;
+            }
+
+        }
+
+
+
 
         //IPatientControlView Eventhandler
         public event EventHandler? SearchRequestedByName;
         public event EventHandler? AddPatientRequested;
         public event EventHandler<CellEditEventArgs>? CellValueEdited;
         public event EventHandler<TestListEventArgs>? OpenTestListRequested;
+        public event EventHandler PrintBarcodeRequested;
 
         //IUserControlView EventHandler
         public event EventHandler? UserSearchRequestedByName;
         public event EventHandler? UserAddRequested;
         public event EventHandler? UserActionRequested;
         public event EventHandler<CellEditEventArgs>? UserCellValueEdited;
+        public event EventHandler DeleteUserRequested;
 
         //IPatientAnalyticsView EventHandler
-        public event EventHandler? SearchRequestedByHIR;
+        public event EventHandler? PrintResultRequested;
         public event EventHandler? AnalyticsActionRequested;
         public event EventHandler<CellEditEventArgs>? AnalyticsCellValueEdited;
 
@@ -263,6 +327,6 @@ namespace Rapha_LIS.Views
         public event EventHandler? ResultSearchRequested;
         public event EventHandler? ResultActionRequested;
         public event EventHandler DeletePatientRequested;
-
+        public event EventHandler? SearchRequestedByHIR;
     }
 }

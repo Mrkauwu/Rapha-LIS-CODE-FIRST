@@ -9,7 +9,7 @@ namespace Rapha_LIS.Models
     public interface IUserControlRepository
     {
 
-        void DeleteUser(int Id);
+        void DeleteUser(List<int> ids);
         List<UserModel> GetAll();
         void SaveOrUpdateUser(UserModel user);
         List<FilteredUserModel> GetFilteredName();

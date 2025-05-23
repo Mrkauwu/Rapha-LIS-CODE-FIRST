@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -17,6 +18,12 @@ using System.Windows.Forms;
 using Xceed.Words.NET;
 using static MaterialSkin.Controls.MaterialCheckedListBox;
 using static System.Net.Mime.MediaTypeNames;
+using ZXing;
+using ZXing.Common;
+using ZXing.Rendering;
+using System.Drawing;
+using ZXing.PDF417.Internal;
+using Xceed.Document.NET;
 
 namespace Rapha_LIS.Presenters
 {
@@ -34,13 +41,12 @@ namespace Rapha_LIS.Presenters
         private readonly BindingSource PatientControlBindingSource;
         private List<FilteredPatientModel>? filteredPatientList;
         private List<PatientModel>? patientModel;
-
-
-
+        private int currentPrintIndex = 0;
 
         //Test List
         private readonly ITestListView testList;
         private readonly ITestListRepository testListRepository;
+        
 
         public PatientPresenter(IPatientControlView patientView, IPatientControlRepository patientRepository,
                                 IPatientAnalyticsView patientAnalyticsView, IAnalyticsRepository analyticsRepository
@@ -64,6 +70,7 @@ namespace Rapha_LIS.Presenters
             this.patientView.DeletePatientRequested += PatientView_DeleteRequested;
             patientView.CellValueEdited += (s, e) => PatientView_CellValueEdited(null, e.RowIndex);
             patientView.OpenTestListRequested += PatientView_OpenTestListRequested;
+            patientView.PrintBarcodeRequested += (s, e) => PatientView_PrintBarcodeRequested();
             this.PatientControlBindingSource = new BindingSource();  // ✅ Initialize first
             this.patientView.BindPatientControlList(PatientControlBindingSource);  // ✅ Now it's not null
 
@@ -77,13 +84,215 @@ namespace Rapha_LIS.Presenters
             patientHRI = analyticsRepository.GetPatientHRI(SigninPresenter.LoggedInUserFullName ?? "");
             analyticsBindingSource.DataSource = patientHRI;
             patientAnalyticsView.BindPatientAnalyticsList(analyticsBindingSource);
+            
 
             this.patientAnalyticsView.SearchRequestedByHIR += PatientAnalyticsView_SearchRequestedByHIR;
+            patientAnalyticsView.PrintResultRequested += PatientAnalyticsView_PrintResultRequested;
             this.patientAnalyticsView.AnalyticsCellValueEdited += (s, e) => PatientAnalyticsView_CellValueEdited(null, e.RowIndex);
 
             LoadAllPatientList();
             LoadTestList();
         }
+
+        private void PatientAnalyticsView_PrintResultRequested(object? sender, EventArgs e)
+        {
+            var selectedIds = patientAnalyticsView.SelectedToPrint;
+
+            if (!selectedIds.Any())
+            {
+                patientView.ShowMessage("Please select at least one patient to print.");
+                return;
+            }
+
+            var patientsToPrint = analyticsRepository.PrintPatientResult(selectedIds).ToList();
+
+            if (patientsToPrint.Count == 0)
+            {
+                patientView.ShowMessage("No patients found for selected IDs.");
+                return;
+            }
+
+            GeneratePatientReport(patientsToPrint);
+
+        }
+
+        private void GeneratePatientReport(List<PatientModel> patients)
+        {
+            string filePath = Path.Combine(Path.GetTempPath(), $"PatientReport_{DateTime.Now:yyyyMMddHHmmss}.docx");
+
+            using (var doc = DocX.Create(filePath))
+            {
+                var logoImage = doc.AddImage(@"C:\Users\Mrka\Desktop\Software Design\Project Rapha\Rapha LIS FINAL\Images\LOGO.png");  // Change path
+                var picture = logoImage.CreatePicture();
+                var logoParagraph = doc.InsertParagraph();
+                logoParagraph.AppendPicture(picture).Alignment = Alignment.center;
+
+                doc.InsertParagraph("Rapha Diagnostic Laboratory")
+                    .Font("Bell MT").FontSize(22).Bold().Alignment = Alignment.center;
+                doc.InsertParagraph("\"Your Health is our Priority\"")
+                    .Font("Arial").FontSize(12).Italic().Alignment = Alignment.center;
+                doc.InsertParagraph("Kidapawan City")
+                    .Font("Arial").FontSize(12).Alignment = Alignment.center;
+
+                foreach (var patient in patients)
+                {
+                    doc.InsertParagraph("HEMATOLOGY")
+                        .Font("Cambria").FontSize(22).Bold()
+                        .Highlight(Xceed.Document.NET.Highlight.cyan)
+                        .SpacingAfter(20).Alignment = Alignment.center;
+
+                    var infoTable = doc.AddTable(2, 3);
+                    infoTable.Design = TableDesign.None;
+                    infoTable.Alignment = Alignment.center;
+                    infoTable.AutoFit = AutoFit.Contents;
+
+                    infoTable.Rows[0].Cells[0].Paragraphs[0].Append($"Name: {patient.Name}");
+                    infoTable.Rows[0].Cells[1].Paragraphs[0].Append($"Age: {patient.Age}");
+                    infoTable.Rows[0].Cells[2].Paragraphs[0].Append($"Date: {patient.DateCreated.ToShortDateString()}");
+
+                    infoTable.Rows[1].Cells[0].Paragraphs[0].Append($"Address: {"Kidapawan City"}");
+                    infoTable.Rows[1].Cells[1].Paragraphs[0].Append($"Sex: {patient.Sex}");
+                    infoTable.Rows[1].Cells[2].Paragraphs[0].Append($"Physician: {patient.Physician}");
+
+                    doc.InsertTable(infoTable);
+                    doc.InsertParagraph().SpacingAfter(20);
+
+                    var tests = System.Text.RegularExpressions.Regex
+                        .Split((patient.Test ?? "").Trim(), @"\s{2,}|\r?\n")
+                        .Select(s => s.Trim())
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+
+                    var results = System.Text.RegularExpressions.Regex
+                        .Split((patient.TestResult ?? "").Trim(), @"\s{2,}|\r?\n")
+                        .Select(s => s.Trim())
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+
+                    var normals = System.Text.RegularExpressions.Regex
+                    .Split((patient.NormalValue ?? "").Trim(), @"\s{2,}")
+                    .Select(s => s.Trim())
+                    .Where(s => !string.IsNullOrWhiteSpace(s))
+                    .ToArray();
+
+                    var maxRows = new[] { tests.Length, results.Length, normals.Length }.Max();
+                    var testTable = doc.AddTable(maxRows + 1, 3);
+                    testTable.Alignment = Alignment.center;
+                    testTable.Design = TableDesign.TableGrid;
+
+                    testTable.Rows[0].Cells[0].Paragraphs[0].Append("Test").Bold();
+                    testTable.Rows[0].Cells[1].Paragraphs[0].Append("Result").Bold();
+                    testTable.Rows[0].Cells[2].Paragraphs[0].Append("Normal Value").Bold();
+
+                    for (int i = 0; i < maxRows; i++)
+                    {
+                        testTable.Rows[i + 1].Cells[0].Paragraphs[0].Append(tests.ElementAtOrDefault(i)?.Trim() ?? "");
+                        testTable.Rows[i + 1].Cells[1].Paragraphs[0].Append(results.ElementAtOrDefault(i)?.Trim() ?? "");
+                        testTable.Rows[i + 1].Cells[2].Paragraphs[0].Append(normals.ElementAtOrDefault(i)?.Trim() ?? "");
+                    }
+
+
+                    doc.InsertTable(testTable);
+                    doc.InsertParagraph().SpacingAfter(20);
+
+                    var signTable = doc.AddTable(2, 2);
+                    signTable.Alignment = Alignment.center;
+                    signTable.Design = TableDesign.None;
+
+                    signTable.Rows[0].Cells[0].Paragraphs[0].Append($"{"NENA SALCEDO LINGAYON, MD, FPSP"}").Alignment = Alignment.center;
+                    signTable.Rows[0].Cells[1].Paragraphs[0].Append($"{patient.MedTech}").Alignment = Alignment.center;
+
+                    signTable.Rows[1].Cells[0].Paragraphs[0].Append("Pathologist").Italic().Alignment = Alignment.center;
+                    signTable.Rows[1].Cells[1].Paragraphs[0].Append("Medical Technologist").Italic().Alignment = Alignment.center;
+
+                    doc.InsertTable(signTable);
+                    doc.InsertParagraph().InsertPageBreakAfterSelf();
+                }
+
+                doc.Save();
+            }
+
+            // Open Word
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = filePath,
+                UseShellExecute = true
+            });
+        }
+
+
+        private void PatientView_PrintBarcodeRequested()
+        {
+            var selectedIds = patientView.SelectedPatient;
+
+            if (!selectedIds.Any())
+            {
+                patientView.ShowMessage("Please select at least one patient to print.");
+                return;
+            }
+
+            var patientsToPrint = patientRepository.GetBarcodeIdsByPatientIds(selectedIds).ToList();
+
+            if (patientsToPrint.Count == 0)
+            {
+                patientView.ShowMessage("No patients found for selected IDs.");
+                return;
+            }
+
+            currentPrintIndex = 0;  // Reset before printing
+
+            PrintDocument doc = new PrintDocument();
+            doc.DefaultPageSettings.PaperSize = new PaperSize("TestTubeLabel", 197, 98);
+            doc.PrintPage += (s, args) =>
+            {
+                int y = 10;
+
+                var writer = new ZXing.BarcodeWriter<System.Drawing.Bitmap>
+                {
+                    Format = ZXing.BarcodeFormat.CODE_128,
+                    Options = new ZXing.Common.EncodingOptions { Width = 200, Height = 60 },
+                    Renderer = new ZXing.Rendering.BitmapRenderer()
+                };
+
+                // Print only one patient per page
+                var patient = patientsToPrint[currentPrintIndex];
+                var barcodeValue = patient.BarcodeID ?? patient.Id.ToString();
+                var barcodeImage = writer.Write(barcodeValue);
+
+                args.Graphics.DrawString($"Name: {patient.Name}", new System.Drawing.Font("Arial", 10), Brushes.Black, 10, y);
+                y += 20;
+                args.Graphics.DrawString($"Age: {patient.Age}", new System.Drawing.Font("Arial", 10), Brushes.Black, 10, y);
+                y += 20;
+                args.Graphics.DrawImage(barcodeImage, new Point(10, y));
+                y += barcodeImage.Height + 30;
+
+                currentPrintIndex++;
+
+                // If there are more patients, request another page
+                args.HasMorePages = currentPrintIndex < patientsToPrint.Count;
+            };
+
+            // Ask user to select printer
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = doc;
+
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Show preview after printer selection
+                    using (PrintPreviewDialog previewDialog = new PrintPreviewDialog
+                    {
+                        Document = doc,
+                        Width = 800,
+                        Height = 600
+                    })
+                    {
+                        previewDialog.ShowDialog();
+                    }
+                }
+            }
+        }
+
 
         private void TestList_SaveTestRequested(object? sender, EventArgs e)
         {
@@ -146,13 +355,8 @@ namespace Rapha_LIS.Presenters
             analyticsBindingSource.DataSource = patientHRI;
         }
 
-
-
-
-        
-
         //Analytics
-        private void PatientAnalyticsView_SearchRequestedByHIR(object? sender, EventArgs e)
+        private async void PatientAnalyticsView_SearchRequestedByHIR(object? sender, EventArgs e)
         {
             string inputId = patientAnalyticsView.SearchQueryByHIR.Trim();
             if (string.IsNullOrWhiteSpace(inputId))
@@ -160,21 +364,24 @@ namespace Rapha_LIS.Presenters
                 patientView.ShowMessage("Please enter a Barcode ID.");
                 return;
             }
-            var patient = analyticsRepository.GetPatientByHRI(inputId);
+
+            var patient = analyticsRepository.GetPatientByHRI(inputId); // sync call, okay for now
+
             if (patient != null)
             {
                 if (!string.IsNullOrEmpty(SigninPresenter.LoggedInUserFullName))
                 {
-                    analyticsRepository.UpdateExaminer(inputId, SigninPresenter.LoggedInUserFullName);
+                    await analyticsRepository.UpdateExaminer(inputId, SigninPresenter.LoggedInUserFullName);
                 }
-                patientView.ShowMessage($"Patient {patient.Name} examined by {SigninPresenter.LoggedInUserFullName}");
             }
             else
             {
-                patientView.ShowMessage("User not found!");
+                patientView.ShowMessage("Barcode is invalid!");
             }
+
             LoadAllPatientList();
         }
+
 
 
 
@@ -226,7 +433,6 @@ namespace Rapha_LIS.Presenters
             try
             {
                 patientRepository.DeletePatient(ids);
-                patientView.ShowMessage("Selected record(s) deleted.");
                 LoadAllPatientList();
             }
             catch (Exception ex)

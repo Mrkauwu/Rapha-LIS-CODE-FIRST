@@ -28,6 +28,7 @@ namespace Rapha_LIS.Presenters
             this.userControlView.UserSearchRequestedByName += UserControlView_UserSearchRequestedByName;
             this.userControlView.UserAddRequested += UserControlView_UserAddRequested;
             this.userControlView.UserCellValueEdited += (s, e) => UserControlView__CellValueEdited(null, e.RowIndex);
+            this.userControlView.DeleteUserRequested += UserActionVIew_UserDeleteRequested;
 
             this.UserControlBindingSource = new BindingSource();  // ✅ Initialize first
             this.userControlView.BindUserControlList(UserControlBindingSource);
@@ -96,11 +97,27 @@ namespace Rapha_LIS.Presenters
 
         private void UserActionVIew_UserDeleteRequested(object? sender, EventArgs e)
         {
-            var user = (UserModel)UserControlBindingSource.Current;
-            userRepository.DeleteUser(user.Id);
-            //userActionVIew.IsSuccessful = true;
-            //userActionVIew.Message = "User Deleted Successfuly";
-            LoadAllUserList();
+            var ids = userControlView.SelectedUser;
+            if (!ids.Any())
+            {
+                userControlView.UserShowMessage("Please select at least one row to delete.");
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to delete the selected record(s)?",
+                    "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                userRepository.DeleteUser(ids);
+                userControlView.UserShowMessage("Selected record(s) deleted.");
+                LoadAllUserList();
+            }
+            catch (Exception ex)
+            {
+                userControlView.UserShowMessage($"Error: {ex.Message}", "Error");
+            }
         }
     }
 }
