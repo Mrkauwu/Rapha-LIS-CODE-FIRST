@@ -79,6 +79,7 @@
             tabPage6 = new TabPage();
             dataGridView1 = new DataGridView();
             tabPage4 = new TabPage();
+            button1 = new Button();
             btnPrintResult = new Guna.UI2.WinForms.Guna2Button();
             txtAnalyticsSearch = new Guna.UI2.WinForms.Guna2TextBox();
             guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
@@ -103,7 +104,6 @@
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             timer1 = new System.Windows.Forms.Timer(components);
-            button1 = new Button();
             tabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             tabPage4.SuspendLayout();
@@ -213,6 +213,15 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Analytics";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(692, 134);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 22;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
             // 
             // btnPrintResult
             // 
@@ -783,15 +792,6 @@
             // timer1
             // 
             timer1.Interval = 300;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(692, 134);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 22;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
             // 
             // Rapha_LIS
             // 
