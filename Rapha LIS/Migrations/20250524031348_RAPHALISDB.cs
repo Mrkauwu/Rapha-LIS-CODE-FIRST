@@ -6,11 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rapha_LIS.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDB : Migration
+    public partial class RAPHALISDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Leukocytes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Leukocytes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LeukocytesNormalValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Leukocytes", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Patients",
                 columns: table => new
@@ -60,6 +74,7 @@ namespace Rapha_LIS.Migrations
                     Age = table.Column<int>(type: "int", nullable: true),
                     Sex = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -72,6 +87,9 @@ namespace Rapha_LIS.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Leukocytes");
+
             migrationBuilder.DropTable(
                 name: "Patients");
 

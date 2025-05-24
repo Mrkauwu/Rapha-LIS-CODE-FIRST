@@ -30,21 +30,17 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Rapha_LIS));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -53,11 +49,11 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -68,56 +64,66 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             imageList1 = new ImageList(components);
-            tabPage6 = new TabPage();
-            dataGridView1 = new DataGridView();
-            tabPage4 = new TabPage();
-            button1 = new Button();
+            Logout = new TabPage();
+            PatientAnalytics = new TabPage();
+            guna2ContextMenuStrip3 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            refreshToolStripMenuItem2 = new ToolStripMenuItem();
+            printResultToolStripMenuItem = new ToolStripMenuItem();
             btnPrintResult = new Guna.UI2.WinForms.Guna2Button();
             txtAnalyticsSearch = new Guna.UI2.WinForms.Guna2TextBox();
             guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvAnalyticsPatients = new Guna.UI2.WinForms.Guna2DataGridView();
-            dataGridViewCheckBoxColumn1 = new DataGridViewCheckBoxColumn();
-            userTabPage = new TabPage();
+            UserManagement = new TabPage();
+            guna2ContextMenuStrip2 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            refreshToolStripMenuItem1 = new ToolStripMenuItem();
+            addUserToolStripMenuItem = new ToolStripMenuItem();
+            deleteUserToolStripMenuItem = new ToolStripMenuItem();
+            showPasswordToolStripMenuItem = new ToolStripMenuItem();
             btnAddUser = new Guna.UI2.WinForms.Guna2Button();
             btnDeleteUser = new Guna.UI2.WinForms.Guna2Button();
             txtUserControlSearch = new Guna.UI2.WinForms.Guna2TextBox();
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvUserControl = new Guna.UI2.WinForms.Guna2DataGridView();
-            dataGridViewCheckBoxColumn3 = new DataGridViewCheckBoxColumn();
-            patientTabPage = new TabPage();
+            PatientManagement = new TabPage();
+            guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            refreshToolStripMenuItem = new ToolStripMenuItem();
+            addPatientToolStripMenuItem = new ToolStripMenuItem();
+            printBarcodeToolStripMenuItem = new ToolStripMenuItem();
+            deletePatientToolStripMenuItem = new ToolStripMenuItem();
             btnDelete = new Guna.UI2.WinForms.Guna2Button();
             btnPrintBarcode = new Guna.UI2.WinForms.Guna2Button();
             btnAddPatient = new Guna.UI2.WinForms.Guna2Button();
             txtPatientControlSearch = new Guna.UI2.WinForms.Guna2TextBox();
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvPatientControl = new Guna.UI2.WinForms.Guna2DataGridView();
-            CheckBox = new DataGridViewCheckBoxColumn();
-            tabPage1 = new TabPage();
-            guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
+            Dashboard = new TabPage();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             timer1 = new System.Windows.Forms.Timer(components);
-            tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            tabPage4.SuspendLayout();
+            dgvDashboard = new Guna.UI2.WinForms.Guna2DataGridView();
+            PatientAnalytics.SuspendLayout();
+            guna2ContextMenuStrip3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvAnalyticsPatients).BeginInit();
-            userTabPage.SuspendLayout();
+            UserManagement.SuspendLayout();
+            guna2ContextMenuStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvUserControl).BeginInit();
-            patientTabPage.SuspendLayout();
+            PatientManagement.SuspendLayout();
+            guna2ContextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPatientControl).BeginInit();
-            tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).BeginInit();
+            Dashboard.SuspendLayout();
             materialTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvDashboard).BeginInit();
             SuspendLayout();
             // 
             // imageList1
@@ -128,100 +134,61 @@
             imageList1.Images.SetKeyName(0, "Analytics.png");
             imageList1.Images.SetKeyName(1, "Dashboard.png");
             imageList1.Images.SetKeyName(2, "Patient Management.png");
-            imageList1.Images.SetKeyName(3, "Result.png");
-            imageList1.Images.SetKeyName(4, "Settings.png");
-            imageList1.Images.SetKeyName(5, "User Management.png");
+            imageList1.Images.SetKeyName(3, "Settings.png");
+            imageList1.Images.SetKeyName(4, "User Management.png");
+            imageList1.Images.SetKeyName(5, "exit.png");
             // 
-            // tabPage6
+            // Logout
             // 
-            tabPage6.Controls.Add(dataGridView1);
-            tabPage6.ImageKey = "Settings.png";
-            tabPage6.Location = new Point(4, 31);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1010, 666);
-            tabPage6.TabIndex = 5;
-            tabPage6.Text = "Settings";
-            tabPage6.UseVisualStyleBackColor = true;
+            Logout.ImageKey = "exit.png";
+            Logout.Location = new Point(4, 31);
+            Logout.Name = "Logout";
+            Logout.Size = new Size(1010, 666);
+            Logout.TabIndex = 5;
+            Logout.Text = "Logout";
+            Logout.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // PatientAnalytics
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToResizeColumns = false;
-            dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(128, 255, 128);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Blue;
-            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridView1.BackgroundColor = Color.DimGray;
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(255, 128, 128);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.Blue;
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.GridColor = Color.FromArgb(206, 147, 216);
-            dataGridView1.Location = new Point(3, 206);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(255, 128, 128);
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = Color.FromArgb(68, 88, 112);
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(255, 128, 128);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.ScrollBars = ScrollBars.Vertical;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1215, 450);
-            dataGridView1.TabIndex = 6;
+            PatientAnalytics.ContextMenuStrip = guna2ContextMenuStrip3;
+            PatientAnalytics.Controls.Add(btnPrintResult);
+            PatientAnalytics.Controls.Add(txtAnalyticsSearch);
+            PatientAnalytics.Controls.Add(guna2PictureBox3);
+            PatientAnalytics.Controls.Add(dgvAnalyticsPatients);
+            PatientAnalytics.ImageKey = "Analytics.png";
+            PatientAnalytics.Location = new Point(4, 31);
+            PatientAnalytics.Name = "PatientAnalytics";
+            PatientAnalytics.Size = new Size(1010, 666);
+            PatientAnalytics.TabIndex = 3;
+            PatientAnalytics.Text = "Analytics";
+            PatientAnalytics.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // guna2ContextMenuStrip3
             // 
-            tabPage4.Controls.Add(button1);
-            tabPage4.Controls.Add(btnPrintResult);
-            tabPage4.Controls.Add(txtAnalyticsSearch);
-            tabPage4.Controls.Add(guna2PictureBox3);
-            tabPage4.Controls.Add(dgvAnalyticsPatients);
-            tabPage4.ImageKey = "Analytics.png";
-            tabPage4.Location = new Point(4, 31);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1010, 666);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Analytics";
-            tabPage4.UseVisualStyleBackColor = true;
+            guna2ContextMenuStrip3.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem2, printResultToolStripMenuItem });
+            guna2ContextMenuStrip3.Name = "guna2ContextMenuStrip3";
+            guna2ContextMenuStrip3.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            guna2ContextMenuStrip3.RenderStyle.BorderColor = Color.Gainsboro;
+            guna2ContextMenuStrip3.RenderStyle.ColorTable = null;
+            guna2ContextMenuStrip3.RenderStyle.RoundedEdges = true;
+            guna2ContextMenuStrip3.RenderStyle.SelectionArrowColor = Color.White;
+            guna2ContextMenuStrip3.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            guna2ContextMenuStrip3.RenderStyle.SelectionForeColor = Color.White;
+            guna2ContextMenuStrip3.RenderStyle.SeparatorColor = Color.Gainsboro;
+            guna2ContextMenuStrip3.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            guna2ContextMenuStrip3.Size = new Size(135, 48);
             // 
-            // button1
+            // refreshToolStripMenuItem2
             // 
-            button1.Location = new Point(692, 134);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 22;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            refreshToolStripMenuItem2.Name = "refreshToolStripMenuItem2";
+            refreshToolStripMenuItem2.Size = new Size(134, 22);
+            refreshToolStripMenuItem2.Text = "Refresh";
+            // 
+            // printResultToolStripMenuItem
+            // 
+            printResultToolStripMenuItem.Name = "printResultToolStripMenuItem";
+            printResultToolStripMenuItem.Size = new Size(134, 22);
+            printResultToolStripMenuItem.Text = "Print Result";
             // 
             // btnPrintResult
             // 
@@ -288,47 +255,46 @@
             // 
             dgvAnalyticsPatients.AllowUserToAddRows = false;
             dgvAnalyticsPatients.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dgvAnalyticsPatients.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            dgvAnalyticsPatients.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvAnalyticsPatients.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvAnalyticsPatients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvAnalyticsPatients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgvAnalyticsPatients.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(100, 181, 246);
-            dataGridViewCellStyle6.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(97, 178, 243);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvAnalyticsPatients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(97, 178, 243);
+            dataGridViewCellStyle2.SelectionForeColor = Color.White;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvAnalyticsPatients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvAnalyticsPatients.ColumnHeadersHeight = 40;
-            dgvAnalyticsPatients.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn1 });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.White;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle7.ForeColor = Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            dgvAnalyticsPatients.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvAnalyticsPatients.DefaultCellStyle = dataGridViewCellStyle3;
             dgvAnalyticsPatients.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvAnalyticsPatients.GridColor = Color.FromArgb(231, 229, 255);
-            dgvAnalyticsPatients.Location = new Point(3, 210);
+            dgvAnalyticsPatients.Location = new Point(6, 207);
             dgvAnalyticsPatients.Name = "dgvAnalyticsPatients";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.White;
-            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(252, 252, 252);
-            dataGridViewCellStyle8.SelectionForeColor = Color.White;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvAnalyticsPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(252, 252, 252);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvAnalyticsPatients.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvAnalyticsPatients.RowHeadersVisible = false;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle9.SelectionForeColor = Color.Black;
-            dgvAnalyticsPatients.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dgvAnalyticsPatients.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dgvAnalyticsPatients.RowTemplate.Height = 35;
-            dgvAnalyticsPatients.Size = new Size(1004, 453);
+            dgvAnalyticsPatients.Size = new Size(998, 453);
             dgvAnalyticsPatients.TabIndex = 16;
             dgvAnalyticsPatients.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvAnalyticsPatients.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -354,27 +320,61 @@
             dgvAnalyticsPatients.VirtualMode = true;
             dgvAnalyticsPatients.DataBindingComplete += dgvAnalyticsPatients_DataBindingComplete;
             // 
-            // dataGridViewCheckBoxColumn1
+            // UserManagement
             // 
-            dataGridViewCheckBoxColumn1.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCheckBoxColumn1.HeaderText = "";
-            dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            dataGridViewCheckBoxColumn1.Width = 5;
+            UserManagement.ContextMenuStrip = guna2ContextMenuStrip2;
+            UserManagement.Controls.Add(btnAddUser);
+            UserManagement.Controls.Add(btnDeleteUser);
+            UserManagement.Controls.Add(txtUserControlSearch);
+            UserManagement.Controls.Add(guna2PictureBox2);
+            UserManagement.Controls.Add(dgvUserControl);
+            UserManagement.ImageKey = "User Management.png";
+            UserManagement.Location = new Point(4, 31);
+            UserManagement.Name = "UserManagement";
+            UserManagement.Size = new Size(1010, 666);
+            UserManagement.TabIndex = 2;
+            UserManagement.Text = "User Control";
+            UserManagement.UseVisualStyleBackColor = true;
             // 
-            // userTabPage
+            // guna2ContextMenuStrip2
             // 
-            userTabPage.Controls.Add(btnAddUser);
-            userTabPage.Controls.Add(btnDeleteUser);
-            userTabPage.Controls.Add(txtUserControlSearch);
-            userTabPage.Controls.Add(guna2PictureBox2);
-            userTabPage.Controls.Add(dgvUserControl);
-            userTabPage.ImageKey = "User Management.png";
-            userTabPage.Location = new Point(4, 31);
-            userTabPage.Name = "userTabPage";
-            userTabPage.Size = new Size(1010, 666);
-            userTabPage.TabIndex = 2;
-            userTabPage.Text = "User Control";
-            userTabPage.UseVisualStyleBackColor = true;
+            guna2ContextMenuStrip2.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem1, addUserToolStripMenuItem, deleteUserToolStripMenuItem, showPasswordToolStripMenuItem });
+            guna2ContextMenuStrip2.Name = "guna2ContextMenuStrip2";
+            guna2ContextMenuStrip2.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            guna2ContextMenuStrip2.RenderStyle.BorderColor = Color.Gainsboro;
+            guna2ContextMenuStrip2.RenderStyle.ColorTable = null;
+            guna2ContextMenuStrip2.RenderStyle.RoundedEdges = true;
+            guna2ContextMenuStrip2.RenderStyle.SelectionArrowColor = Color.White;
+            guna2ContextMenuStrip2.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            guna2ContextMenuStrip2.RenderStyle.SelectionForeColor = Color.White;
+            guna2ContextMenuStrip2.RenderStyle.SeparatorColor = Color.Gainsboro;
+            guna2ContextMenuStrip2.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            guna2ContextMenuStrip2.Size = new Size(157, 92);
+            // 
+            // refreshToolStripMenuItem1
+            // 
+            refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
+            refreshToolStripMenuItem1.Size = new Size(156, 22);
+            refreshToolStripMenuItem1.Text = "Refresh";
+            // 
+            // addUserToolStripMenuItem
+            // 
+            addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            addUserToolStripMenuItem.Size = new Size(156, 22);
+            addUserToolStripMenuItem.Text = "Add User";
+            // 
+            // deleteUserToolStripMenuItem
+            // 
+            deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
+            deleteUserToolStripMenuItem.Size = new Size(156, 22);
+            deleteUserToolStripMenuItem.Text = "Delete User";
+            // 
+            // showPasswordToolStripMenuItem
+            // 
+            showPasswordToolStripMenuItem.Name = "showPasswordToolStripMenuItem";
+            showPasswordToolStripMenuItem.Size = new Size(156, 22);
+            showPasswordToolStripMenuItem.Text = "Show Password";
+            showPasswordToolStripMenuItem.Click += showPasswordToolStripMenuItem_Click;
             // 
             // btnAddUser
             // 
@@ -466,46 +466,44 @@
             // 
             dgvUserControl.AllowUserToAddRows = false;
             dgvUserControl.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.BackColor = Color.White;
-            dgvUserControl.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            dgvUserControl.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvUserControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dgvUserControl.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(100, 181, 246);
-            dataGridViewCellStyle11.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(97, 178, 243);
-            dataGridViewCellStyle11.SelectionForeColor = Color.White;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dgvUserControl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle7.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(97, 178, 243);
+            dataGridViewCellStyle7.SelectionForeColor = Color.White;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dgvUserControl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvUserControl.ColumnHeadersHeight = 40;
-            dgvUserControl.Columns.AddRange(new DataGridViewColumn[] { dataGridViewCheckBoxColumn3 });
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = Color.White;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle12.ForeColor = Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = Color.White;
-            dataGridViewCellStyle12.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dgvUserControl.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle8.ForeColor = Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = Color.White;
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dgvUserControl.DefaultCellStyle = dataGridViewCellStyle8;
             dgvUserControl.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvUserControl.GridColor = Color.FromArgb(231, 229, 255);
-            dgvUserControl.Location = new Point(3, 210);
+            dgvUserControl.Location = new Point(6, 207);
             dgvUserControl.Name = "dgvUserControl";
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.White;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle13.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = Color.FromArgb(252, 252, 252);
-            dataGridViewCellStyle13.SelectionForeColor = Color.White;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
-            dgvUserControl.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.White;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(252, 252, 252);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
+            dgvUserControl.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             dgvUserControl.RowHeadersVisible = false;
-            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle14.SelectionForeColor = Color.Black;
-            dgvUserControl.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle10.SelectionForeColor = Color.Black;
+            dgvUserControl.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dgvUserControl.RowTemplate.Height = 35;
-            dgvUserControl.Size = new Size(1004, 453);
+            dgvUserControl.Size = new Size(998, 453);
             dgvUserControl.TabIndex = 16;
             dgvUserControl.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvUserControl.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -529,31 +527,68 @@
             dgvUserControl.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvUserControl.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvUserControl.VirtualMode = true;
+            dgvUserControl.CellFormatting += dgvUserControl_CellFormatting;
             dgvUserControl.DataBindingComplete += dgvUserControl_DataBindingComplete;
+            dgvUserControl.SelectionChanged += dgvUserControl_SelectionChanged;
+            dgvUserControl.Leave += dgvUserControl_Leave;
             // 
-            // dataGridViewCheckBoxColumn3
+            // PatientManagement
             // 
-            dataGridViewCheckBoxColumn3.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCheckBoxColumn3.HeaderText = "";
-            dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
-            dataGridViewCheckBoxColumn3.Width = 5;
+            PatientManagement.ContextMenuStrip = guna2ContextMenuStrip1;
+            PatientManagement.Controls.Add(btnDelete);
+            PatientManagement.Controls.Add(btnPrintBarcode);
+            PatientManagement.Controls.Add(btnAddPatient);
+            PatientManagement.Controls.Add(txtPatientControlSearch);
+            PatientManagement.Controls.Add(guna2PictureBox1);
+            PatientManagement.Controls.Add(dgvPatientControl);
+            PatientManagement.ImageKey = "Patient Management.png";
+            PatientManagement.Location = new Point(4, 31);
+            PatientManagement.Name = "PatientManagement";
+            PatientManagement.Padding = new Padding(3);
+            PatientManagement.Size = new Size(1010, 666);
+            PatientManagement.TabIndex = 1;
+            PatientManagement.Text = "Patient Control";
+            PatientManagement.UseVisualStyleBackColor = true;
             // 
-            // patientTabPage
+            // guna2ContextMenuStrip1
             // 
-            patientTabPage.Controls.Add(btnDelete);
-            patientTabPage.Controls.Add(btnPrintBarcode);
-            patientTabPage.Controls.Add(btnAddPatient);
-            patientTabPage.Controls.Add(txtPatientControlSearch);
-            patientTabPage.Controls.Add(guna2PictureBox1);
-            patientTabPage.Controls.Add(dgvPatientControl);
-            patientTabPage.ImageKey = "Patient Management.png";
-            patientTabPage.Location = new Point(4, 31);
-            patientTabPage.Name = "patientTabPage";
-            patientTabPage.Padding = new Padding(3);
-            patientTabPage.Size = new Size(1010, 666);
-            patientTabPage.TabIndex = 1;
-            patientTabPage.Text = "Patient Control";
-            patientTabPage.UseVisualStyleBackColor = true;
+            guna2ContextMenuStrip1.BackColor = SystemColors.Control;
+            guna2ContextMenuStrip1.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem, addPatientToolStripMenuItem, printBarcodeToolStripMenuItem, deletePatientToolStripMenuItem });
+            guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
+            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
+            guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
+            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.White;
+            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.White;
+            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.Gainsboro;
+            guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            guna2ContextMenuStrip1.Size = new Size(148, 92);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            refreshToolStripMenuItem.Size = new Size(147, 22);
+            refreshToolStripMenuItem.Text = "Refresh";
+            // 
+            // addPatientToolStripMenuItem
+            // 
+            addPatientToolStripMenuItem.Name = "addPatientToolStripMenuItem";
+            addPatientToolStripMenuItem.Size = new Size(147, 22);
+            addPatientToolStripMenuItem.Text = "Add Patient";
+            // 
+            // printBarcodeToolStripMenuItem
+            // 
+            printBarcodeToolStripMenuItem.Name = "printBarcodeToolStripMenuItem";
+            printBarcodeToolStripMenuItem.Size = new Size(147, 22);
+            printBarcodeToolStripMenuItem.Text = "Print Barcode";
+            // 
+            // deletePatientToolStripMenuItem
+            // 
+            deletePatientToolStripMenuItem.Name = "deletePatientToolStripMenuItem";
+            deletePatientToolStripMenuItem.Size = new Size(147, 22);
+            deletePatientToolStripMenuItem.Text = "Delete Patient";
             // 
             // btnDelete
             // 
@@ -651,6 +686,7 @@
             txtPatientControlSearch.ShadowDecoration.CustomizableEdges = customizableEdges22;
             txtPatientControlSearch.Size = new Size(296, 36);
             txtPatientControlSearch.TabIndex = 18;
+            txtPatientControlSearch.TabStop = false;
             // 
             // guna2PictureBox1
             // 
@@ -670,48 +706,51 @@
             // 
             dgvPatientControl.AllowUserToAddRows = false;
             dgvPatientControl.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle15.BackColor = Color.White;
-            dgvPatientControl.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle11.BackColor = Color.White;
+            dgvPatientControl.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             dgvPatientControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dgvPatientControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPatientControl.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgvPatientControl.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = Color.FromArgb(100, 181, 246);
-            dataGridViewCellStyle16.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle16.ForeColor = Color.White;
-            dataGridViewCellStyle16.SelectionBackColor = Color.FromArgb(97, 178, 243);
-            dataGridViewCellStyle16.SelectionForeColor = Color.White;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dgvPatientControl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = Color.FromArgb(100, 181, 246);
+            dataGridViewCellStyle12.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle12.ForeColor = Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(97, 178, 243);
+            dataGridViewCellStyle12.SelectionForeColor = Color.White;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dgvPatientControl.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             dgvPatientControl.ColumnHeadersHeight = 40;
-            dgvPatientControl.Columns.AddRange(new DataGridViewColumn[] { CheckBox });
-            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = Color.White;
-            dataGridViewCellStyle17.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle17.ForeColor = Color.Black;
-            dataGridViewCellStyle17.SelectionBackColor = Color.White;
-            dataGridViewCellStyle17.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
-            dgvPatientControl.DefaultCellStyle = dataGridViewCellStyle17;
+            dgvPatientControl.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = Color.White;
+            dataGridViewCellStyle13.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle13.ForeColor = Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = Color.White;
+            dataGridViewCellStyle13.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.True;
+            dgvPatientControl.DefaultCellStyle = dataGridViewCellStyle13;
             dgvPatientControl.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvPatientControl.GridColor = Color.FromArgb(231, 229, 255);
             dgvPatientControl.Location = new Point(6, 207);
             dgvPatientControl.Name = "dgvPatientControl";
-            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = Color.White;
-            dataGridViewCellStyle18.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle18.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(252, 252, 252);
-            dataGridViewCellStyle18.SelectionForeColor = Color.White;
-            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.True;
-            dgvPatientControl.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = Color.White;
+            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle14.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = Color.FromArgb(252, 252, 252);
+            dataGridViewCellStyle14.SelectionForeColor = Color.White;
+            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.False;
+            dgvPatientControl.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             dgvPatientControl.RowHeadersVisible = false;
-            dataGridViewCellStyle19.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle19.SelectionForeColor = Color.Black;
-            dgvPatientControl.RowsDefaultCellStyle = dataGridViewCellStyle19;
-            dgvPatientControl.RowTemplate.Height = 35;
+            dgvPatientControl.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle15.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle15.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
+            dgvPatientControl.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dgvPatientControl.RowTemplate.Height = 40;
             dgvPatientControl.Size = new Size(998, 453);
             dgvPatientControl.TabIndex = 15;
+            dgvPatientControl.TabStop = false;
             dgvPatientControl.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvPatientControl.ThemeStyle.AlternatingRowsStyle.Font = null;
             dgvPatientControl.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
@@ -723,14 +762,14 @@
             dgvPatientControl.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvPatientControl.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI Semibold", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dgvPatientControl.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            dgvPatientControl.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvPatientControl.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvPatientControl.ThemeStyle.HeaderStyle.Height = 40;
             dgvPatientControl.ThemeStyle.ReadOnly = false;
             dgvPatientControl.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvPatientControl.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvPatientControl.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 10F);
             dgvPatientControl.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            dgvPatientControl.ThemeStyle.RowsStyle.Height = 35;
+            dgvPatientControl.ThemeStyle.RowsStyle.Height = 40;
             dgvPatientControl.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvPatientControl.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvPatientControl.VirtualMode = true;
@@ -738,47 +777,26 @@
             dgvPatientControl.DataBindingComplete += dgvPatientControl_DataBindingComplete;
             dgvPatientControl.EditingControlShowing += dgvPatientControl_EditingControlShowing;
             // 
-            // CheckBox
+            // Dashboard
             // 
-            CheckBox.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            CheckBox.HeaderText = "";
-            CheckBox.Name = "CheckBox";
-            CheckBox.Width = 5;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(guna2PictureBox4);
-            tabPage1.ImageKey = "Dashboard.png";
-            tabPage1.Location = new Point(4, 31);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1010, 666);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Dashboard";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // guna2PictureBox4
-            // 
-            guna2PictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            guna2PictureBox4.CustomizableEdges = customizableEdges25;
-            guna2PictureBox4.Image = (Image)resources.GetObject("guna2PictureBox4.Image");
-            guna2PictureBox4.ImageRotate = 0F;
-            guna2PictureBox4.Location = new Point(3, 6);
-            guna2PictureBox4.Name = "guna2PictureBox4";
-            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2PictureBox4.Size = new Size(1004, 100);
-            guna2PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            guna2PictureBox4.TabIndex = 19;
-            guna2PictureBox4.TabStop = false;
+            Dashboard.Controls.Add(dgvDashboard);
+            Dashboard.ImageKey = "Dashboard.png";
+            Dashboard.Location = new Point(4, 31);
+            Dashboard.Name = "Dashboard";
+            Dashboard.Padding = new Padding(3);
+            Dashboard.Size = new Size(1010, 666);
+            Dashboard.TabIndex = 0;
+            Dashboard.Text = "Dashboard";
+            Dashboard.UseVisualStyleBackColor = true;
             // 
             // materialTabControl1
             // 
             materialTabControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            materialTabControl1.Controls.Add(tabPage1);
-            materialTabControl1.Controls.Add(patientTabPage);
-            materialTabControl1.Controls.Add(userTabPage);
-            materialTabControl1.Controls.Add(tabPage4);
-            materialTabControl1.Controls.Add(tabPage6);
+            materialTabControl1.Controls.Add(Dashboard);
+            materialTabControl1.Controls.Add(PatientManagement);
+            materialTabControl1.Controls.Add(UserManagement);
+            materialTabControl1.Controls.Add(PatientAnalytics);
+            materialTabControl1.Controls.Add(Logout);
             materialTabControl1.Depth = 0;
             materialTabControl1.ImageList = imageList1;
             materialTabControl1.Location = new Point(3, 64);
@@ -788,10 +806,60 @@
             materialTabControl1.SelectedIndex = 0;
             materialTabControl1.Size = new Size(1018, 701);
             materialTabControl1.TabIndex = 0;
+            materialTabControl1.Selecting += materialTabControl1_Selecting;
             // 
             // timer1
             // 
             timer1.Interval = 300;
+            // 
+            // dgvDashboard
+            // 
+            dataGridViewCellStyle16.BackColor = Color.White;
+            dgvDashboard.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle17.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle17.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle17.ForeColor = Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = DataGridViewTriState.True;
+            dgvDashboard.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dgvDashboard.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle18.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = Color.White;
+            dataGridViewCellStyle18.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle18.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle18.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle18.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle18.WrapMode = DataGridViewTriState.False;
+            dgvDashboard.DefaultCellStyle = dataGridViewCellStyle18;
+            dgvDashboard.GridColor = Color.FromArgb(231, 229, 255);
+            dgvDashboard.Location = new Point(123, 156);
+            dgvDashboard.Name = "dgvDashboard";
+            dgvDashboard.RowHeadersVisible = false;
+            dgvDashboard.Size = new Size(840, 150);
+            dgvDashboard.TabIndex = 0;
+            dgvDashboard.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvDashboard.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvDashboard.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvDashboard.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvDashboard.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvDashboard.ThemeStyle.BackColor = Color.White;
+            dgvDashboard.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvDashboard.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvDashboard.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvDashboard.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvDashboard.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvDashboard.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDashboard.ThemeStyle.HeaderStyle.Height = 4;
+            dgvDashboard.ThemeStyle.ReadOnly = false;
+            dgvDashboard.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvDashboard.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvDashboard.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvDashboard.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvDashboard.ThemeStyle.RowsStyle.Height = 25;
+            dgvDashboard.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvDashboard.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // Rapha_LIS
             // 
@@ -804,46 +872,44 @@
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = materialTabControl1;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MinimizeBox = false;
             MinimumSize = new Size(1024, 766);
             Name = "Rapha_LIS";
-            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Rapha Laboratory Information System";
+            WindowState = FormWindowState.Maximized;
             Load += Rapha_LIS_Load;
-            tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            tabPage4.ResumeLayout(false);
+            PatientAnalytics.ResumeLayout(false);
+            guna2ContextMenuStrip3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvAnalyticsPatients).EndInit();
-            userTabPage.ResumeLayout(false);
+            UserManagement.ResumeLayout(false);
+            guna2ContextMenuStrip2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvUserControl).EndInit();
-            patientTabPage.ResumeLayout(false);
+            PatientManagement.ResumeLayout(false);
+            guna2ContextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvPatientControl).EndInit();
-            tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).EndInit();
+            Dashboard.ResumeLayout(false);
             materialTabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvDashboard).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private ImageList imageList1;
-        private TabPage tabPage6;
-        private TabPage tabPage4;
-        private TabPage userTabPage;
-        private TabPage patientTabPage;
-        private TabPage tabPage1;
+        private TabPage Logout;
+        private TabPage PatientAnalytics;
+        private TabPage UserManagement;
+        private TabPage PatientManagement;
+        private TabPage Dashboard;
         private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
-        private DataGridView dataGridView1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPatientControl;
         private System.Windows.Forms.Timer timer1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPatientControl;
         private Guna.UI2.WinForms.Guna2DataGridView dgvAnalyticsPatients;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvUserControl;
-        private DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox1;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox3;
         private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox2;
@@ -855,10 +921,22 @@
         private Guna.UI2.WinForms.Guna2Button btnDeleteUser;
         private Guna.UI2.WinForms.Guna2Button btnAddUser;
         private Guna.UI2.WinForms.Guna2TextBox txtAnalyticsSearch;
-        private DataGridViewCheckBoxColumn CheckBox;
         private Guna.UI2.WinForms.Guna2Button btnPrintResult;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox4;
-        private Button button1;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;
+        private ToolStripMenuItem refreshToolStripMenuItem;
+        private ToolStripMenuItem addPatientToolStripMenuItem;
+        private ToolStripMenuItem printBarcodeToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip2;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip3;
+        private ToolStripMenuItem refreshToolStripMenuItem2;
+        private ToolStripMenuItem printResultToolStripMenuItem;
+        private ToolStripMenuItem refreshToolStripMenuItem1;
+        private ToolStripMenuItem addUserToolStripMenuItem;
+        private ToolStripMenuItem deleteUserToolStripMenuItem;
+        private ToolStripMenuItem deletePatientToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvUserControl;
+        private ToolStripMenuItem showPasswordToolStripMenuItem;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvDashboard;
         //private Guna.UI2.WinForms.Guna2Button btnAddUser;
     }
 }

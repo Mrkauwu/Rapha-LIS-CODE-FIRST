@@ -16,7 +16,7 @@ using Xceed.Document.NET;
 
 namespace Rapha_LIS.Repositories
 {
-    public class PatientRepository : BaseRepository, IPatientControlRepository, IAnalyticsRepository, ITestListRepository
+    public class PatientRepository : BaseRepository, IPatientControlRepository, IAnalyticsRepository, ITestListRepository, ILeukocytesListRepository
     {
         private readonly AppDbContext _context;
         public PatientRepository(AppDbContext context)
@@ -127,44 +127,10 @@ namespace Rapha_LIS.Repositories
         {
             return _context.Patients
                 .OrderByDescending(p => p.DateCreated) // Order by DateCreated (descending)
-                .AsNoTracking() // Improves performance for read-only queries
+                .AsNoTracking() // Improves performance for read-only queries\
+                .Take(50)
                 .ToList();
         }
-
-        //private PatientModel ReadPatient(SqlDataReader reader) => new PatientModel
-        //{
-        //    Id = reader.GetInt32("Id"),
-        //    Name = reader.GetStringOrEmpty("Name"),
-        //    Age = reader.GetNullableInt("Age"),
-        //    Sex = reader.GetStringOrEmpty("Sex"),
-        //    Physician = reader.GetStringOrEmpty("Physician"),
-        //    MedTech = reader.GetStringOrEmpty("MedTech"),
-        //    Test = reader.GetStringOrEmpty("Test"),
-        //    TestResult = reader.GetStringOrEmpty("TestResult"),
-        //    NormalValue = reader.GetStringOrEmpty("NormalValue"),
-        //    Leukocytes = reader.GetStringOrEmpty("Leukocytes"),
-        //    LeukocytesResult = reader.GetStringOrEmpty("LeukocytesResult"),
-        //    LeukocytesNormalValue = reader.GetStringOrEmpty("LeukocytesNormalValue"),
-        //    DateCreated = reader.GetDateTime("DateCreated")
-        //};
-
-        private FilteredPatientModel FilteredReadPatient(SqlDataReader reader) => new FilteredPatientModel
-        {
-            Id = reader.GetInt32("Id"),
-            Name = reader.GetStringOrEmpty("Name"),
-            Age = reader.GetNullableInt("Age"),
-            Sex = reader.GetStringOrEmpty("Sex"),
-            Physician = reader.GetStringOrEmpty("Physician"),
-            MedTech = reader.GetStringOrEmpty("MedTech"),
-            Test = reader.GetStringOrEmpty("Test"),
-            TestResult = reader.GetStringOrEmpty("TestResult"),
-            NormalValue = reader.GetStringOrEmpty("NormalValue"),
-            Leukocytes = reader.GetStringOrEmpty("Leukocytes"),
-            LeukocytesResult = reader.GetStringOrEmpty("LeukocytesResult"),
-            LeukocytesNormalValue = reader.GetStringOrEmpty("LeukocytesNormalValue"),
-            DateCreated = reader.GetDateTime("DateCreated")
-        };
-
 
         public int InsertEmptyPatient()
         {
@@ -266,9 +232,17 @@ namespace Rapha_LIS.Repositories
                     Test = p.Test,
                     TestResult = p.TestResult,
                     NormalValue = p.NormalValue,
+                    Leukocytes = p.Leukocytes,
+                    LeukocytesResult = p.LeukocytesResult,
+                    LeukocytesNormalValue = p.LeukocytesNormalValue,
                     DateCreated = p.DateCreated
                 })
                 .ToList();
+        }
+
+        public IEnumerable<LeukocytesModel> GetAllLeukocytes()
+        {
+            return _context.Leukocytes.ToList();
         }
     }
 

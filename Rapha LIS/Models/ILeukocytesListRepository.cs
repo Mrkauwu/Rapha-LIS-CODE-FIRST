@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Rapha_LIS.Models
 {
-    public interface ISigninRepository
+    public interface ILeukocytesListRepository
     {
-        (string? Name, string? Role) ValidateUser(string username, string password);
+        IEnumerable<LeukocytesModel> GetAllLeukocytes();
     }
 }

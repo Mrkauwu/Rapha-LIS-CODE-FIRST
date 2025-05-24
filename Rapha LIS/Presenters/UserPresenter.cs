@@ -74,7 +74,7 @@ namespace Rapha_LIS.Presenters
                     Name = "",
                     Age = null,
                     Sex = "",
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now, 
                 };
 
                 userList?.Insert(0, newUser);
@@ -111,7 +111,6 @@ namespace Rapha_LIS.Presenters
             try
             {
                 userRepository.DeleteUser(ids);
-                userControlView.UserShowMessage("Selected record(s) deleted.");
                 LoadAllUserList();
             }
             catch (Exception ex)

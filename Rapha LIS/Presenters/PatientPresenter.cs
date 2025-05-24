@@ -24,6 +24,7 @@ using ZXing.Rendering;
 using System.Drawing;
 using ZXing.PDF417.Internal;
 using Xceed.Document.NET;
+using Rapha_LIS.Views.LListEventArgs;
 
 namespace Rapha_LIS.Presenters
 {
@@ -46,12 +47,25 @@ namespace Rapha_LIS.Presenters
         //Test List
         private readonly ITestListView testList;
         private readonly ITestListRepository testListRepository;
-        
+
+        //Leukocytes List
+        private readonly ILeukocytesListView leukocytesListView;
+        private readonly ILeukocytesListRepository leukocytesListRepository;
+
+        public event EventHandler? LogoutRequested;
+
 
         public PatientPresenter(IPatientControlView patientView, IPatientControlRepository patientRepository,
                                 IPatientAnalyticsView patientAnalyticsView, IAnalyticsRepository analyticsRepository
-                                , ITestListView testList, ITestListRepository testListRepository)
+                                , ITestListView testList, ITestListRepository testListRepository, ILeukocytesListView leukocytesListView, ILeukocytesListRepository leukocytesListRepository)
         {
+
+            //LeukocytesList
+            this.leukocytesListView = leukocytesListView ?? throw new ArgumentNullException(nameof(leukocytesListView));
+            this.leukocytesListRepository = leukocytesListRepository ?? throw new ArgumentNullException(nameof(leukocytesListRepository));
+
+            leukocytesListView.SearchLeukocytesRequested += LeukocytesListView_SearchLeukocytesRequested; ;
+            leukocytesListView.SaveLeukocytesRequested += LeukocytesListView_SaveLeukocytesRequested; ;
 
             //TestList
             this.testList = testList ?? throw new ArgumentNullException(nameof(testList));
@@ -70,7 +84,10 @@ namespace Rapha_LIS.Presenters
             this.patientView.DeletePatientRequested += PatientView_DeleteRequested;
             patientView.CellValueEdited += (s, e) => PatientView_CellValueEdited(null, e.RowIndex);
             patientView.OpenTestListRequested += PatientView_OpenTestListRequested;
+            patientView.OpenLeukocytesListRequested += PatientView_OpenLeukocytesListRequested; 
             patientView.PrintBarcodeRequested += (s, e) => PatientView_PrintBarcodeRequested();
+            patientView.RefreshRequested += PatientView_RefreshRequested;
+            patientView.LogoutRequested += PatientView_LogoutRequested;
             this.PatientControlBindingSource = new BindingSource();  // ✅ Initialize first
             this.patientView.BindPatientControlList(PatientControlBindingSource);  // ✅ Now it's not null
 
@@ -80,18 +97,48 @@ namespace Rapha_LIS.Presenters
             this.analyticsRepository = analyticsRepository ?? throw new ArgumentNullException(nameof(analyticsRepository));
 
             this.analyticsBindingSource = new BindingSource();
-            
-            patientHRI = analyticsRepository.GetPatientHRI(SigninPresenter.LoggedInUserFullName ?? "");
-            analyticsBindingSource.DataSource = patientHRI;
             patientAnalyticsView.BindPatientAnalyticsList(analyticsBindingSource);
             
 
             this.patientAnalyticsView.SearchRequestedByHIR += PatientAnalyticsView_SearchRequestedByHIR;
             patientAnalyticsView.PrintResultRequested += PatientAnalyticsView_PrintResultRequested;
             this.patientAnalyticsView.AnalyticsCellValueEdited += (s, e) => PatientAnalyticsView_CellValueEdited(null, e.RowIndex);
+            this.patientAnalyticsView.RefreshAnalyticsRequested += PatientAnalyticsView_RefreshAnalyticsRequested;
 
             LoadAllPatientList();
             LoadTestList();
+            LoadLeukocytesList();
+        }
+
+        private void PatientView_LogoutRequested(object? sender, EventArgs e)
+        {
+            LogoutRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PatientAnalyticsView_RefreshAnalyticsRequested(object? sender, EventArgs e)
+        {
+            patientHRI = analyticsRepository.GetPatientHRI(SigninPresenter.LoggedInUserFullName ?? "");
+            analyticsBindingSource.DataSource = patientHRI;
+        }
+
+        private void PatientView_RefreshRequested(object? sender, EventArgs e)
+        {
+            patientModel = patientRepository.GetAll().ToList();
+            PatientControlBindingSource.DataSource = patientModel;
+        }
+
+        private void LeukocytesListView_SaveLeukocytesRequested(object? sender, EventArgs e)
+        {
+            var form = (Form)leukocytesListView;
+            form.DialogResult = DialogResult.OK;
+            form.Close();
+        }
+
+        private void LeukocytesListView_SearchLeukocytesRequested(object? sender, EventArgs e)
+        {
+            var searchTerm = (leukocytesListView as LeukocytesListView)?.txtSearch.Text ?? "";
+            leukocytesListView.SetLeukocytesList(leukocytesListRepository.GetAllLeukocytes()
+                .Where(t => t.Leukocytes.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)));
         }
 
         private void PatientAnalyticsView_PrintResultRequested(object? sender, EventArgs e)
@@ -175,20 +222,52 @@ namespace Rapha_LIS.Presenters
                     .Where(s => !string.IsNullOrWhiteSpace(s))
                     .ToArray();
 
-                    var maxRows = new[] { tests.Length, results.Length, normals.Length }.Max();
-                    var testTable = doc.AddTable(maxRows + 1, 3);
+                    var leukocytes = System.Text.RegularExpressions.Regex
+                        .Split((patient.Leukocytes ?? "").Trim(), @"\s{2,}|\r?\n")
+                        .Select(s => s.Trim())
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+
+                    var leukocytesResult = System.Text.RegularExpressions.Regex
+                        .Split((patient.LeukocytesResult ?? "").Trim(), @"\s{2,}|\r?\n")
+                        .Select(s => s.Trim())
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+
+                    var leukocytesNormal = System.Text.RegularExpressions.Regex
+                        .Split((patient.LeukocytesNormalValue ?? "").Trim(), @"\s{2,}|\r?\n")
+                        .Select(s => s.Trim())
+                        .Where(s => !string.IsNullOrWhiteSpace(s))
+                        .ToArray();
+
+
+                    var maxRows = new[] { tests.Length, results.Length, normals.Length,leukocytes.Length,
+                                         leukocytesResult.Length, leukocytesNormal.Length}.Max();
+
+                    var testTable = doc.AddTable(maxRows + 1, 6);
                     testTable.Alignment = Alignment.center;
                     testTable.Design = TableDesign.TableGrid;
+
+                    testTable.SetWidths(new float[] { 300f, 100f, 120f, 150f, 100f, 120f });
 
                     testTable.Rows[0].Cells[0].Paragraphs[0].Append("Test").Bold();
                     testTable.Rows[0].Cells[1].Paragraphs[0].Append("Result").Bold();
                     testTable.Rows[0].Cells[2].Paragraphs[0].Append("Normal Value").Bold();
+
+                    testTable.Rows[0].Cells[3].Paragraphs[0].Append("Leukocytes").Bold();
+                    testTable.Rows[0].Cells[4].Paragraphs[0].Append("Result").Bold();
+                    testTable.Rows[0].Cells[5].Paragraphs[0].Append("Normal Value").Bold();
+
 
                     for (int i = 0; i < maxRows; i++)
                     {
                         testTable.Rows[i + 1].Cells[0].Paragraphs[0].Append(tests.ElementAtOrDefault(i)?.Trim() ?? "");
                         testTable.Rows[i + 1].Cells[1].Paragraphs[0].Append(results.ElementAtOrDefault(i)?.Trim() ?? "");
                         testTable.Rows[i + 1].Cells[2].Paragraphs[0].Append(normals.ElementAtOrDefault(i)?.Trim() ?? "");
+
+                        testTable.Rows[i + 1].Cells[3].Paragraphs[0].Append(leukocytes.ElementAtOrDefault(i)?.Trim() ?? "");
+                        testTable.Rows[i + 1].Cells[4].Paragraphs[0].Append(leukocytesResult.ElementAtOrDefault(i)?.Trim() ?? "");
+                        testTable.Rows[i + 1].Cells[5].Paragraphs[0].Append(leukocytesNormal.ElementAtOrDefault(i)?.Trim() ?? "");
                     }
 
 
@@ -309,6 +388,7 @@ namespace Rapha_LIS.Presenters
         }
 
         private void LoadTestList() => testList.SetTestList(testListRepository.GetAllTests());
+        private void LoadLeukocytesList() => leukocytesListView.SetLeukocytesList(leukocytesListRepository.GetAllLeukocytes());
 
         private void PatientAnalyticsView_CellValueEdited(object value, int rowIndex)
         {
@@ -323,8 +403,6 @@ namespace Rapha_LIS.Presenters
                 patientView.ShowMessage($"Auto-save failed: {ex.Message}", "Error");
             }
         }
-
-        
 
         private void PatientView_CellValueEdited(object value, int rowIndex)
         {
@@ -346,6 +424,12 @@ namespace Rapha_LIS.Presenters
                 patientView.UpdateRowWithSelectedTests(e.RowIndex, testList.SelectedTests);
         }
 
+        private void PatientView_OpenLeukocytesListRequested(object? sender, LeukocytesListEventArgs e)
+        {
+            if (((Form)leukocytesListView).ShowDialog() == DialogResult.OK)
+                patientView.UpdateRowWithSelectedLeukocytes(e.RowIndex, leukocytesListView.SelectedLeukocytes);
+        }
+
         private void LoadAllPatientList()
         {
             patientModel = patientRepository.GetAll().ToList();
@@ -353,6 +437,10 @@ namespace Rapha_LIS.Presenters
             
             patientHRI = analyticsRepository.GetPatientHRI(SigninPresenter.LoggedInUserFullName ?? "");
             analyticsBindingSource.DataSource = patientHRI;
+
+
+
+
         }
 
         //Analytics

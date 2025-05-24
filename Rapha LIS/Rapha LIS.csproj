@@ -7,6 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Rapha LIS LOGO.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +18,7 @@
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Rapha LIS LOGO.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +45,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Update="Views\Rapha LIS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Views\LeukocytesListView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

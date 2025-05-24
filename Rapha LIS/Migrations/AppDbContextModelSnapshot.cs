@@ -22,6 +22,25 @@ namespace Rapha_LIS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Rapha_LIS.Models.LeukocytesModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Leukocytes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LeukocytesNormalValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Leukocytes");
+                });
+
             modelBuilder.Entity("Rapha_LIS.Models.PatientModel", b =>
                 {
                     b.Property<int>("Id")
@@ -115,6 +134,9 @@ namespace Rapha_LIS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sex")

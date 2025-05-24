@@ -11,6 +11,7 @@ namespace Rapha_LIS.Views
     {
         string SearchQueryByHIR { get; set; }
         event EventHandler? PrintResultRequested;
+        event EventHandler? RefreshAnalyticsRequested;
         event EventHandler? AnalyticsActionRequested;
         event EventHandler<CellEditEventArgs>? AnalyticsCellValueEdited;
         event EventHandler? SearchRequestedByHIR;

@@ -2,7 +2,9 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using Rapha_LIS.Models;
+using Rapha_LIS.Presenters;
 using Rapha_LIS.Views.CEditEventArgs;
+using Rapha_LIS.Views.LListEventArgs;
 using Rapha_LIS.Views.TListEventArgs;
 using System;
 using System.Collections.Generic;
@@ -17,11 +19,10 @@ using System.Windows.Forms;
 
 namespace Rapha_LIS.Views
 {
-    public partial class Rapha_LIS : MaterialForm, IPatientControlView, IUserControlView, IPatientAnalyticsView
+    public partial class Rapha_LIS : MaterialForm, IPatientControlView, IUserControlView, IPatientAnalyticsView, IDashboard
     {
         private bool isEdit;
-        private bool isEditUser;
-        private bool isEditResult;
+        private int? passwordVisibleRowIndex = null;
 
         public Rapha_LIS()
         {
@@ -44,6 +45,26 @@ namespace Rapha_LIS.Views
             dgvPatientControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvUserControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvAnalyticsPatients.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+
+
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
+
+        public void TabVisibilityBasedOnUserRole()
+        {
+            materialTabControl1.TabPages.Remove(Dashboard);
+            materialTabControl1.TabPages.Remove(PatientManagement);
+            materialTabControl1.TabPages.Remove(UserManagement);
         }
 
 
@@ -57,6 +78,11 @@ namespace Rapha_LIS.Views
             btnDelete.Click += (s, e) => DeletePatientRequested?.Invoke(this, EventArgs.Empty);
             btnPrintBarcode.Click += (s, e) => PrintBarcodeRequested?.Invoke(this, EventArgs.Empty);
 
+            refreshToolStripMenuItem.Click += (s, e) => RefreshRequested?.Invoke(this, EventArgs.Empty);
+            addPatientToolStripMenuItem.Click += (s, e) => AddPatientRequested?.Invoke(this, EventArgs.Empty);
+            deletePatientToolStripMenuItem.Click += (s, e) => DeletePatientRequested?.Invoke(this, EventArgs.Empty);
+            printBarcodeToolStripMenuItem.Click += (s, e) => PrintBarcodeRequested?.Invoke(this, EventArgs.Empty);
+
             dgvPatientControl.CellValueChanged += (_, e) =>
             {
                 if (e.RowIndex >= 0)
@@ -67,8 +93,6 @@ namespace Rapha_LIS.Views
             // User Control TabPage
             btnAddUser.Click += (s, e) => UserAddRequested?.Invoke(this, EventArgs.Empty);
             btnDeleteUser.Click += (s, e) => DeleteUserRequested?.Invoke(this, EventArgs.Empty);
-
-            // Update all references to the field in the file:  
             txtUserControlSearch.TextChanged += (s, e) => StartSearchTimer("User");
             dgvUserControl.CellValueChanged += (_, e) =>
             {
@@ -76,15 +100,19 @@ namespace Rapha_LIS.Views
                     UserCellValueEdited?.Invoke(this, new CellEditEventArgs(e.RowIndex, e.ColumnIndex));
             };
 
+            addUserToolStripMenuItem.Click += (s, e) => UserAddRequested?.Invoke(this, EventArgs.Empty);
+            deleteUserToolStripMenuItem.Click += (s, e) => DeleteUserRequested?.Invoke(this, EventArgs.Empty);
+
             // Analytics TabPage
             txtAnalyticsSearch.KeyDown += (s, e) => { if (e.KeyCode == Keys.Enter) SearchRequestedByHIR?.Invoke(this, EventArgs.Empty); };
-            button1.Click += (s, e) => SearchRequestedByHIR?.Invoke(this, EventArgs.Empty);
             btnPrintResult.Click += (s, e) => PrintResultRequested?.Invoke(this, EventArgs.Empty);
             dgvAnalyticsPatients.CellValueChanged += (_, e) =>
             {
                 if (e.RowIndex >= 0)
                     AnalyticsCellValueEdited?.Invoke(this, new CellEditEventArgs(e.RowIndex, e.ColumnIndex));
             };
+            refreshToolStripMenuItem2.Click += (s, e) => RefreshAnalyticsRequested?.Invoke(this, EventArgs.Empty);
+            printResultToolStripMenuItem.Click += (s, e) => PrintResultRequested?.Invoke(this, EventArgs.Empty);
 
             timer1.Tick += (s, e) =>
             {
@@ -97,9 +125,6 @@ namespace Rapha_LIS.Views
                         break;
                     case "User":
                         UserSearchRequestedByName?.Invoke(this, EventArgs.Empty);
-                        break;
-                    case "Result":
-                        ResultSearchRequested?.Invoke(this, EventArgs.Empty);
                         break;
                 }
             };
@@ -197,14 +222,26 @@ namespace Rapha_LIS.Views
 
         private void dgvPatientControl_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (dgvPatientControl.Columns[e.ColumnIndex].Name != "Test") return;
+            var columnName = dgvPatientControl.Columns[e.ColumnIndex].Name;
 
-            e.Cancel = true;
+            if (columnName == "Test")
+            {
+                e.Cancel = true;
 
-            var currentTests = (dgvPatientControl.Rows[e.RowIndex].Cells["Test"].Value?.ToString() ?? "")
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
-            OpenTestListRequested?.Invoke(this, new TestListEventArgs(currentTests, e.RowIndex));
+                var currentTests = (dgvPatientControl.Rows[e.RowIndex].Cells["Test"].Value?.ToString() ?? "")
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+                OpenTestListRequested?.Invoke(this, new TestListEventArgs(currentTests, e.RowIndex));
+            }
+            else if (columnName == "Leukocytes")
+            {
+                e.Cancel = true;
+
+                var currentLeukocytes = (dgvPatientControl.Rows[e.RowIndex].Cells["Leukocytes"].Value?.ToString() ?? "")
+                    .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList();
+                OpenLeukocytesListRequested?.Invoke(this, new LeukocytesListEventArgs(currentLeukocytes, e.RowIndex));
+            }
         }
 
         public void UserShowMessage(string message, string title = "Info")
@@ -212,7 +249,7 @@ namespace Rapha_LIS.Views
             MessageBox.Show(message, title);
         }
 
-        
+
 
         public void UpdateRowWithSelectedTests(int rowIndex, List<TestModel> selectedTests)
         {
@@ -222,6 +259,16 @@ namespace Rapha_LIS.Views
             row.Cells["Test"].Value = string.Join(Environment.NewLine, selectedTests.Select(t => t.Test));
             row.Cells["NormalValue"].Value = string.Join(Environment.NewLine, selectedTests.Select(t => t.NormalValue.Replace("\r", " ").Replace("\n", " ").Trim()));
             row.Cells["TestResult"].Value = string.Join(Environment.NewLine, selectedTests.Select(_ => "Pending"));
+        }
+
+        public void UpdateRowWithSelectedLeukocytes(int rowIndex, List<LeukocytesModel> selectedLeukocytes)
+        {
+            if (dgvPatientControl.Rows.Count <= rowIndex) return;
+
+            var row = dgvPatientControl.Rows[rowIndex];
+            row.Cells["Leukocytes"].Value = string.Join(Environment.NewLine, selectedLeukocytes.Select(t => t.Leukocytes));
+            row.Cells["LeukocytesNormalValue"].Value = string.Join(Environment.NewLine, selectedLeukocytes.Select(t => t.LeukocytesNormalValue.Replace("\r", " ").Replace("\n", " ").Trim()));
+            row.Cells["LeukocytesResult"].Value = string.Join(Environment.NewLine, selectedLeukocytes.Select(_ => "Pending"));
         }
 
         private void Rapha_LIS_Load(object sender, EventArgs e)
@@ -251,6 +298,10 @@ namespace Rapha_LIS.Views
 
             if (dgvAnalyticsPatients.Columns.Contains("BarcodeID"))
                 dgvAnalyticsPatients.Columns["BarcodeID"].Visible = false;
+            if (dgvAnalyticsPatients.Columns.Contains("Test"))
+                dgvAnalyticsPatients.Columns["Test"].Width = 150;
+            if (dgvAnalyticsPatients.Columns.Contains("NormalValue"))
+                dgvAnalyticsPatients.Columns["NormalValue"].Width = 150;
 
             string[] readOnlyColumns = { "Id", "MedTech", "NormalValue", "DateCreated", "LeukocytesNormalValue", "Physician", "Sex", "Age", "Name", "Test" };
 
@@ -266,6 +317,17 @@ namespace Rapha_LIS.Views
         {
             if (dgvUserControl.Columns.Contains("Sex"))
                 dgvUserControl.Columns["Sex"].HeaderText = "Gender";
+
+            if (dgvUserControl.Columns.Contains("Role"))
+                dgvUserControl.Columns["Role"].Visible = false;
+
+            string[] readOnlyColumns = { "Id", "DateCreated", };
+
+            foreach (var colName in readOnlyColumns)
+            {
+                if (dgvUserControl.Columns.Contains(colName))
+                    dgvUserControl.Columns[colName].ReadOnly = true;
+            }
         }
 
         private void dgvPatientControl_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -290,6 +352,12 @@ namespace Rapha_LIS.Views
 
             if (dgvPatientControl.Columns.Contains("BarcodeID"))
                 dgvPatientControl.Columns["BarcodeID"].Visible = false;
+            if (dgvPatientControl.Columns.Contains("Test"))
+                dgvPatientControl.Columns["Test"].Width = 150;
+            if (dgvPatientControl.Columns.Contains("NormalValue"))
+                dgvPatientControl.Columns["NormalValue"].Width = 150;
+
+
 
             string[] readOnlyColumns = { "Id", "MedTech", "NormalValue", "DateCreated", "LeukocytesNormalValue", "TestResult", "LeukocytesResult" };
 
@@ -298,11 +366,67 @@ namespace Rapha_LIS.Views
                 if (dgvPatientControl.Columns.Contains(colName))
                     dgvPatientControl.Columns[colName].ReadOnly = true;
             }
-
         }
 
+        private void materialTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage.Text == "Logout") // or check by tab index or name
+            {
+                DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    LogoutRequested.Invoke(this, EventArgs.Empty);
+                }
 
+                e.Cancel = true; // Prevent the tab from opening
+            }
+        }
 
+        private void dgvUserControl_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvUserControl.Columns[e.ColumnIndex].Name == "Password")
+            {
+                if (e.Value != null && e.RowIndex != passwordVisibleRowIndex)
+                {
+                    e.Value = new string('*', e.Value.ToString()?.Length ?? 0);
+                    e.FormattingApplied = true;
+                }
+            }
+        }
+
+        private void showPasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvUserControl.SelectedRows.Count > 0)
+            {
+                passwordVisibleRowIndex = dgvUserControl.SelectedRows[0].Index;
+                dgvUserControl.Invalidate(); // Refresh the grid to trigger CellFormatting
+            }
+        }
+
+        private void dgvUserControl_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvUserControl.SelectedRows.Count > 0 &&
+        passwordVisibleRowIndex != null &&
+        dgvUserControl.SelectedRows[0].Index != passwordVisibleRowIndex)
+            {
+                passwordVisibleRowIndex = null;
+                dgvUserControl.Invalidate();
+            }
+        }
+
+        private void dgvUserControl_Leave(object sender, EventArgs e)
+        {
+            if (passwordVisibleRowIndex != null)
+            {
+                passwordVisibleRowIndex = null;
+                dgvUserControl.Invalidate();
+            }
+        }
+
+        public void BindDashboardList(BindingSource dashboardList)
+        {
+            dgvDashboard.DataSource = dashboardList;
+        }
 
         //IPatientControlView Eventhandler
         public event EventHandler? SearchRequestedByName;
@@ -310,6 +434,10 @@ namespace Rapha_LIS.Views
         public event EventHandler<CellEditEventArgs>? CellValueEdited;
         public event EventHandler<TestListEventArgs>? OpenTestListRequested;
         public event EventHandler PrintBarcodeRequested;
+        public event EventHandler<LeukocytesListEventArgs>? OpenLeukocytesListRequested;
+        public event EventHandler RefreshRequested;
+        public event EventHandler DeletePatientRequested;
+        public event EventHandler LogoutRequested;
 
         //IUserControlView EventHandler
         public event EventHandler? UserSearchRequestedByName;
@@ -322,11 +450,8 @@ namespace Rapha_LIS.Views
         public event EventHandler? PrintResultRequested;
         public event EventHandler? AnalyticsActionRequested;
         public event EventHandler<CellEditEventArgs>? AnalyticsCellValueEdited;
-
-        //IPatientResult EventHandler
-        public event EventHandler? ResultSearchRequested;
-        public event EventHandler? ResultActionRequested;
-        public event EventHandler DeletePatientRequested;
+        public event EventHandler? RefreshAnalyticsRequested;
         public event EventHandler? SearchRequestedByHIR;
+
     }
 }

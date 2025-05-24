@@ -13,6 +13,8 @@ namespace Rapha_LIS.Presenters
         private readonly ISigninView signinView;
         private readonly ISigninRepository signinRepository;
         public static string? LoggedInUserFullName { get; set; }
+        public static string? LoggedInUserRole { get; set; }
+
 
         public SigninPresenter(ISigninView signinView, ISigninRepository signinRepository) 
         {
@@ -23,13 +25,15 @@ namespace Rapha_LIS.Presenters
         }
         private void SigninView_SigninRequested(object? sender, EventArgs e)
         {
-            string? Name = signinRepository.ValidateUser(signinView.Username, signinView.Password);
+            var (name, role) = signinRepository.ValidateUser(signinView.Username, signinView.Password);
 
-            if (!string.IsNullOrEmpty(Name))
+            if (!string.IsNullOrEmpty(name))
             {
-                LoggedInUserFullName = Name;
-                MessageBox.Show("Login successful! Welcome, " + Name + ".", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ((Form)signinView).DialogResult = DialogResult.OK;  // ✅ This closes the login
+                LoggedInUserFullName = name;
+                LoggedInUserRole = role;
+
+                MessageBox.Show("Login successful! Welcome, " + name + ".", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ((Form)signinView).DialogResult = DialogResult.OK;
             }
             else
             {

@@ -12,8 +12,8 @@ using Rapha_LIS.Data;
 namespace Rapha_LIS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250522173309_InitialDB")]
-    partial class InitialDB
+    [Migration("20250524031348_RAPHALISDB")]
+    partial class RAPHALISDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,25 @@ namespace Rapha_LIS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Rapha_LIS.Models.LeukocytesModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Leukocytes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LeukocytesNormalValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Leukocytes");
+                });
 
             modelBuilder.Entity("Rapha_LIS.Models.PatientModel", b =>
                 {
@@ -118,6 +137,9 @@ namespace Rapha_LIS.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sex")

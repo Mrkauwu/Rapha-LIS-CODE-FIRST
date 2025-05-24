@@ -36,6 +36,7 @@ namespace Rapha_LIS
                     services.AddTransient<IPatientControlRepository, PatientRepository>();
                     services.AddTransient<IAnalyticsRepository, PatientRepository>();
                     services.AddTransient<ITestListRepository, PatientRepository>();
+                    services.AddTransient<ILeukocytesListRepository, PatientRepository>();
                     services.AddTransient<IUserControlRepository, UserRepository>();
 
                     // Views
@@ -43,6 +44,8 @@ namespace Rapha_LIS
                     services.AddTransient<ISigninView, SigninView>();      // <-- Add this
                     services.AddTransient<TestListView>();
                     services.AddTransient<ITestListView, TestListView>();  // <-- And add this
+                    services.AddTransient<LeukocytesListView>();
+                    services.AddTransient<ILeukocytesListView, LeukocytesListView>();  // <-- And add this
                     services.AddSingleton<Rapha_LIS.Views.Rapha_LIS>();
 
                     // Interface bindings to main form
@@ -73,26 +76,46 @@ namespace Rapha_LIS
                 if (signinView.ShowDialog() == DialogResult.OK)
                 {
                     var mainForm = services.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>();
+                    var userRole = SigninPresenter.LoggedInUserRole;
+
+                    if (userRole == "User")
+                    {
+                        mainForm.TabVisibilityBasedOnUserRole();
+                    }
 
                     // Initialize presenters
                     var patientRepo = services.GetRequiredService<IPatientControlRepository>();
                     var patientAnalyticsRepo = services.GetRequiredService<IAnalyticsRepository>();
                     var testListView = services.GetRequiredService<TestListView>();
                     var testListRepo = services.GetRequiredService<ITestListRepository>();
+                    var leukocytesListView = services.GetRequiredService<LeukocytesListView>();
+                    var leukocytesListRepo = services.GetRequiredService<ILeukocytesListRepository>();
 
-                    new PatientPresenter(
+                    var patientPresenter = new PatientPresenter(
                         (IPatientControlView)mainForm,
                         patientRepo,
                         (IPatientAnalyticsView)mainForm,
                         patientAnalyticsRepo,
                         testListView,
-                        testListRepo
+                        testListRepo,
+                        leukocytesListView,
+                        leukocytesListRepo
+
                     );
+
+
+                    ((IPatientControlView)mainForm).LogoutRequested += (s, e) =>
+                    {
+                        // Delay the restart after the message loop ends
+                        Application.ExitThread();  // Ends the current UI thread cleanly
+                        Task.Run(() => Application.Restart());
+                    };
 
                     var userRepo = services.GetRequiredService<IUserControlRepository>();
                     new UserPresenter((IUserControlView)mainForm, userRepo);
 
                     Application.Run(mainForm);
+
                 }
                 else
                 {

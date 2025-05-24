@@ -71,25 +71,18 @@ namespace Rapha_LIS.Repositories
         }
 
         // Validate user login
-        public string? ValidateUser(string username, string password)
+        public (string? Name, string? Role) ValidateUser(string username, string password)
         {
-            // Find the user by username (case-sensitive or insensitive depending on your DB collation)
             var user = _context.Users
-                .AsNoTracking()   // No need to track for read-only
-                .FirstOrDefault(u => u.Username == username);
+        .AsNoTracking()
+        .FirstOrDefault(u => u.Username == username);
 
-            if (user != null)
+            if (user != null && user.Password?.Trim() == password.Trim())
             {
-                string storedPassword = user.Password?.Trim() ?? "";
-                string fullName = user.Name ?? "";
-
-                if (storedPassword == password.Trim())
-                {
-                    return fullName; // Successful login, return full name
-                }
+                return (user.Name, user.Role);
             }
 
-            return null; // Login failed
+            return (null, null);
         }
 
         public int InsertEmptyUser()
@@ -101,7 +94,8 @@ namespace Rapha_LIS.Repositories
                 Sex = "",
                 Username = "",
                 Password = "",
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                Role = "User"
             };
 
             _context.Users.Add(user);
@@ -122,7 +116,7 @@ namespace Rapha_LIS.Repositories
                 existingUser.Sex = user.Sex ?? "";
                 existingUser.Username = user.Username ?? "";
                 existingUser.Password = user.Password ?? "";
-                existingUser.DateCreated = DateTime.Now; // Or DateModified if you track update time
+                existingUser.DateCreated = DateTime.Now; //Modify Later to Last Modified
             }
             else
             {

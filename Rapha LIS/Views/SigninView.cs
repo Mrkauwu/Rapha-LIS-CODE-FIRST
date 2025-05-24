@@ -33,6 +33,16 @@ namespace Rapha_LIS.Views
 
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
         private void AssociateAndRaiseViewEvents()
         {
             btnSignin.Click += (s, e) =>
@@ -57,11 +67,6 @@ namespace Rapha_LIS.Views
                     e.SuppressKeyPress = true; // Prevent "ding" sound
                 }
             };
-        }
-
-        private void guna2PictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)

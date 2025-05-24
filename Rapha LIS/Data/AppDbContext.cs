@@ -14,6 +14,7 @@ namespace Rapha_LIS.Data
         public DbSet<PatientModel> Patients { get; set; }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<TestModel> Test { get; set; }
+        public DbSet<LeukocytesModel> Leukocytes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
