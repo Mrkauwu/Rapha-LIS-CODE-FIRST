@@ -53,7 +53,7 @@ namespace Rapha_LIS
                     services.AddSingleton<IPatientControlView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
                     services.AddSingleton<IPatientAnalyticsView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
                     services.AddSingleton<IUserControlView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
-                    services.AddSingleton<IDashboard>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
+                    services.AddSingleton<IDashboardView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
 
                     // Presenters
                     services.AddTransient<SigninPresenter>();
@@ -73,7 +73,8 @@ namespace Rapha_LIS
                 // Show sign-in form
                 var signinView = services.GetRequiredService<SigninView>();
                 var signinRepo = services.GetRequiredService<ISigninRepository>();
-                var signinPresenter = new SigninPresenter(signinView, signinRepo);
+                var dashboardView = services.GetRequiredService<IDashboardView>();
+                var signinPresenter = new SigninPresenter(signinView, signinRepo, dashboardView);
 
                 if (signinView.ShowDialog() == DialogResult.OK)
                 {
@@ -103,13 +104,9 @@ namespace Rapha_LIS
                         testListRepo,
                         leukocytesListView,
                         leukocytesListRepo,
-                        (IDashboard)mainForm,
+                        (IDashboardView)mainForm,
                         dashboardRepo
-
-
-
                     );
-
 
                     ((IPatientControlView)mainForm).LogoutRequested += (s, e) =>
                     {

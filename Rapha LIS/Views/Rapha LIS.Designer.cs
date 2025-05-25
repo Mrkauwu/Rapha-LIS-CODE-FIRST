@@ -85,20 +85,17 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle17 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle18 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle19 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle20 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges45 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             imageList1 = new ImageList(components);
             Logout = new TabPage();
             PatientAnalytics = new TabPage();
-            guna2ContextMenuStrip3 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            cmsPatientAnalytics = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             refreshToolStripMenuItem2 = new ToolStripMenuItem();
             printResultToolStripMenuItem = new ToolStripMenuItem();
             btnPrintResult = new Guna.UI2.WinForms.Guna2Button();
@@ -106,7 +103,7 @@
             guna2PictureBox3 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvAnalyticsPatients = new Guna.UI2.WinForms.Guna2DataGridView();
             UserManagement = new TabPage();
-            guna2ContextMenuStrip2 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            cmsUserManagement = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             refreshToolStripMenuItem1 = new ToolStripMenuItem();
             addUserToolStripMenuItem = new ToolStripMenuItem();
             deleteUserToolStripMenuItem = new ToolStripMenuItem();
@@ -117,7 +114,7 @@
             guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvUserControl = new Guna.UI2.WinForms.Guna2DataGridView();
             PatientManagement = new TabPage();
-            guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            cmsPatientManagement = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             refreshToolStripMenuItem = new ToolStripMenuItem();
             addPatientToolStripMenuItem = new ToolStripMenuItem();
             printBarcodeToolStripMenuItem = new ToolStripMenuItem();
@@ -129,19 +126,19 @@
             guna2PictureBox1 = new Guna.UI2.WinForms.Guna2PictureBox();
             dgvPatientControl = new Guna.UI2.WinForms.Guna2DataGridView();
             Dashboard = new TabPage();
-            guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
-            guna2PictureBox5 = new Guna.UI2.WinForms.Guna2PictureBox();
-            label11 = new Label();
-            label13 = new Label();
-            label10 = new Label();
-            label8 = new Label();
-            label6 = new Label();
-            label9 = new Label();
+            cmsDashboard = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
+            refreshToolStripMenuItem3 = new ToolStripMenuItem();
+            lblDate = new Label();
+            lblYear = new Label();
+            lblToday = new Label();
+            lblMonth = new Label();
+            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
+            lblCompletedCount = new Label();
+            lblInProcessCount = new Label();
             label7 = new Label();
             label5 = new Label();
-            label3 = new Label();
+            lblPendingCount = new Label();
             label4 = new Label();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
@@ -155,21 +152,21 @@
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
             materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
             timer1 = new System.Windows.Forms.Timer(components);
+            timer2 = new System.Windows.Forms.Timer(components);
             PatientAnalytics.SuspendLayout();
-            guna2ContextMenuStrip3.SuspendLayout();
+            cmsPatientAnalytics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvAnalyticsPatients).BeginInit();
             UserManagement.SuspendLayout();
-            guna2ContextMenuStrip2.SuspendLayout();
+            cmsUserManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvUserControl).BeginInit();
             PatientManagement.SuspendLayout();
-            guna2ContextMenuStrip1.SuspendLayout();
+            cmsPatientManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPatientControl).BeginInit();
             Dashboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox5).BeginInit();
+            cmsDashboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDashboard).BeginInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).BeginInit();
             materialTabControl1.SuspendLayout();
@@ -199,7 +196,7 @@
             // 
             // PatientAnalytics
             // 
-            PatientAnalytics.ContextMenuStrip = guna2ContextMenuStrip3;
+            PatientAnalytics.ContextMenuStrip = cmsPatientAnalytics;
             PatientAnalytics.Controls.Add(btnPrintResult);
             PatientAnalytics.Controls.Add(txtAnalyticsSearch);
             PatientAnalytics.Controls.Add(guna2PictureBox3);
@@ -212,20 +209,20 @@
             PatientAnalytics.Text = "Analytics";
             PatientAnalytics.UseVisualStyleBackColor = true;
             // 
-            // guna2ContextMenuStrip3
+            // cmsPatientAnalytics
             // 
-            guna2ContextMenuStrip3.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem2, printResultToolStripMenuItem });
-            guna2ContextMenuStrip3.Name = "guna2ContextMenuStrip3";
-            guna2ContextMenuStrip3.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
-            guna2ContextMenuStrip3.RenderStyle.BorderColor = Color.Gainsboro;
-            guna2ContextMenuStrip3.RenderStyle.ColorTable = null;
-            guna2ContextMenuStrip3.RenderStyle.RoundedEdges = true;
-            guna2ContextMenuStrip3.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip3.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
-            guna2ContextMenuStrip3.RenderStyle.SelectionForeColor = Color.White;
-            guna2ContextMenuStrip3.RenderStyle.SeparatorColor = Color.Gainsboro;
-            guna2ContextMenuStrip3.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            guna2ContextMenuStrip3.Size = new Size(135, 48);
+            cmsPatientAnalytics.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem2, printResultToolStripMenuItem });
+            cmsPatientAnalytics.Name = "guna2ContextMenuStrip3";
+            cmsPatientAnalytics.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            cmsPatientAnalytics.RenderStyle.BorderColor = Color.Gainsboro;
+            cmsPatientAnalytics.RenderStyle.ColorTable = null;
+            cmsPatientAnalytics.RenderStyle.RoundedEdges = true;
+            cmsPatientAnalytics.RenderStyle.SelectionArrowColor = Color.White;
+            cmsPatientAnalytics.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            cmsPatientAnalytics.RenderStyle.SelectionForeColor = Color.White;
+            cmsPatientAnalytics.RenderStyle.SeparatorColor = Color.Gainsboro;
+            cmsPatientAnalytics.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            cmsPatientAnalytics.Size = new Size(135, 48);
             // 
             // refreshToolStripMenuItem2
             // 
@@ -371,7 +368,7 @@
             // 
             // UserManagement
             // 
-            UserManagement.ContextMenuStrip = guna2ContextMenuStrip2;
+            UserManagement.ContextMenuStrip = cmsUserManagement;
             UserManagement.Controls.Add(btnAddUser);
             UserManagement.Controls.Add(btnDeleteUser);
             UserManagement.Controls.Add(txtUserControlSearch);
@@ -385,20 +382,20 @@
             UserManagement.Text = "User Control";
             UserManagement.UseVisualStyleBackColor = true;
             // 
-            // guna2ContextMenuStrip2
+            // cmsUserManagement
             // 
-            guna2ContextMenuStrip2.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem1, addUserToolStripMenuItem, deleteUserToolStripMenuItem, showPasswordToolStripMenuItem });
-            guna2ContextMenuStrip2.Name = "guna2ContextMenuStrip2";
-            guna2ContextMenuStrip2.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
-            guna2ContextMenuStrip2.RenderStyle.BorderColor = Color.Gainsboro;
-            guna2ContextMenuStrip2.RenderStyle.ColorTable = null;
-            guna2ContextMenuStrip2.RenderStyle.RoundedEdges = true;
-            guna2ContextMenuStrip2.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip2.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
-            guna2ContextMenuStrip2.RenderStyle.SelectionForeColor = Color.White;
-            guna2ContextMenuStrip2.RenderStyle.SeparatorColor = Color.Gainsboro;
-            guna2ContextMenuStrip2.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            guna2ContextMenuStrip2.Size = new Size(157, 92);
+            cmsUserManagement.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem1, addUserToolStripMenuItem, deleteUserToolStripMenuItem, showPasswordToolStripMenuItem });
+            cmsUserManagement.Name = "guna2ContextMenuStrip2";
+            cmsUserManagement.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            cmsUserManagement.RenderStyle.BorderColor = Color.Gainsboro;
+            cmsUserManagement.RenderStyle.ColorTable = null;
+            cmsUserManagement.RenderStyle.RoundedEdges = true;
+            cmsUserManagement.RenderStyle.SelectionArrowColor = Color.White;
+            cmsUserManagement.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            cmsUserManagement.RenderStyle.SelectionForeColor = Color.White;
+            cmsUserManagement.RenderStyle.SeparatorColor = Color.Gainsboro;
+            cmsUserManagement.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            cmsUserManagement.Size = new Size(157, 92);
             // 
             // refreshToolStripMenuItem1
             // 
@@ -442,6 +439,7 @@
             btnAddUser.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
             btnAddUser.HoverState.FillColor = Color.Transparent;
             btnAddUser.Image = (Image)resources.GetObject("btnAddUser.Image");
+            btnAddUser.ImageAlign = HorizontalAlignment.Left;
             btnAddUser.Location = new Point(750, 162);
             btnAddUser.Name = "btnAddUser";
             btnAddUser.PressedColor = Color.Transparent;
@@ -583,7 +581,7 @@
             // 
             // PatientManagement
             // 
-            PatientManagement.ContextMenuStrip = guna2ContextMenuStrip1;
+            PatientManagement.ContextMenuStrip = cmsPatientManagement;
             PatientManagement.Controls.Add(btnDelete);
             PatientManagement.Controls.Add(btnPrintBarcode);
             PatientManagement.Controls.Add(btnAddPatient);
@@ -599,21 +597,21 @@
             PatientManagement.Text = "Patient Control";
             PatientManagement.UseVisualStyleBackColor = true;
             // 
-            // guna2ContextMenuStrip1
+            // cmsPatientManagement
             // 
-            guna2ContextMenuStrip1.BackColor = SystemColors.Control;
-            guna2ContextMenuStrip1.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem, addPatientToolStripMenuItem, printBarcodeToolStripMenuItem, deletePatientToolStripMenuItem });
-            guna2ContextMenuStrip1.Name = "guna2ContextMenuStrip1";
-            guna2ContextMenuStrip1.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
-            guna2ContextMenuStrip1.RenderStyle.BorderColor = Color.Gainsboro;
-            guna2ContextMenuStrip1.RenderStyle.ColorTable = null;
-            guna2ContextMenuStrip1.RenderStyle.RoundedEdges = true;
-            guna2ContextMenuStrip1.RenderStyle.SelectionArrowColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
-            guna2ContextMenuStrip1.RenderStyle.SelectionForeColor = Color.White;
-            guna2ContextMenuStrip1.RenderStyle.SeparatorColor = Color.Gainsboro;
-            guna2ContextMenuStrip1.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            guna2ContextMenuStrip1.Size = new Size(148, 92);
+            cmsPatientManagement.BackColor = SystemColors.Control;
+            cmsPatientManagement.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem, addPatientToolStripMenuItem, printBarcodeToolStripMenuItem, deletePatientToolStripMenuItem });
+            cmsPatientManagement.Name = "guna2ContextMenuStrip1";
+            cmsPatientManagement.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            cmsPatientManagement.RenderStyle.BorderColor = Color.Gainsboro;
+            cmsPatientManagement.RenderStyle.ColorTable = null;
+            cmsPatientManagement.RenderStyle.RoundedEdges = true;
+            cmsPatientManagement.RenderStyle.SelectionArrowColor = Color.White;
+            cmsPatientManagement.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            cmsPatientManagement.RenderStyle.SelectionForeColor = Color.White;
+            cmsPatientManagement.RenderStyle.SeparatorColor = Color.Gainsboro;
+            cmsPatientManagement.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            cmsPatientManagement.Size = new Size(148, 92);
             // 
             // refreshToolStripMenuItem
             // 
@@ -828,19 +826,19 @@
             // 
             // Dashboard
             // 
-            Dashboard.Controls.Add(guna2CirclePictureBox1);
-            Dashboard.Controls.Add(guna2PictureBox5);
-            Dashboard.Controls.Add(label11);
-            Dashboard.Controls.Add(label13);
-            Dashboard.Controls.Add(label10);
-            Dashboard.Controls.Add(label8);
-            Dashboard.Controls.Add(label6);
-            Dashboard.Controls.Add(label9);
+            Dashboard.BackColor = Color.Transparent;
+            Dashboard.ContextMenuStrip = cmsDashboard;
+            Dashboard.Controls.Add(lblDate);
+            Dashboard.Controls.Add(lblYear);
+            Dashboard.Controls.Add(lblToday);
+            Dashboard.Controls.Add(lblMonth);
+            Dashboard.Controls.Add(guna2Button3);
+            Dashboard.Controls.Add(lblCompletedCount);
+            Dashboard.Controls.Add(lblInProcessCount);
             Dashboard.Controls.Add(label7);
             Dashboard.Controls.Add(label5);
-            Dashboard.Controls.Add(label3);
+            Dashboard.Controls.Add(lblPendingCount);
             Dashboard.Controls.Add(label4);
-            Dashboard.Controls.Add(guna2Button3);
             Dashboard.Controls.Add(guna2Button2);
             Dashboard.Controls.Add(guna2Button1);
             Dashboard.Controls.Add(guna2Button4);
@@ -859,191 +857,197 @@
             Dashboard.Size = new Size(1010, 666);
             Dashboard.TabIndex = 0;
             Dashboard.Text = "Dashboard";
-            Dashboard.UseVisualStyleBackColor = true;
             // 
-            // guna2CirclePictureBox1
+            // cmsDashboard
             // 
-            guna2CirclePictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2CirclePictureBox1.Image = (Image)resources.GetObject("guna2CirclePictureBox1.Image");
-            guna2CirclePictureBox1.ImageRotate = 0F;
-            guna2CirclePictureBox1.Location = new Point(802, 168);
-            guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges25;
-            guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            guna2CirclePictureBox1.Size = new Size(64, 64);
-            guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            guna2CirclePictureBox1.TabIndex = 39;
-            guna2CirclePictureBox1.TabStop = false;
+            cmsDashboard.Items.AddRange(new ToolStripItem[] { refreshToolStripMenuItem3 });
+            cmsDashboard.Name = "guna2ContextMenuStrip4";
+            cmsDashboard.RenderStyle.ArrowColor = Color.FromArgb(151, 143, 255);
+            cmsDashboard.RenderStyle.BorderColor = Color.Gainsboro;
+            cmsDashboard.RenderStyle.ColorTable = null;
+            cmsDashboard.RenderStyle.RoundedEdges = true;
+            cmsDashboard.RenderStyle.SelectionArrowColor = Color.White;
+            cmsDashboard.RenderStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            cmsDashboard.RenderStyle.SelectionForeColor = Color.White;
+            cmsDashboard.RenderStyle.SeparatorColor = Color.Gainsboro;
+            cmsDashboard.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            cmsDashboard.Size = new Size(114, 26);
             // 
-            // guna2PictureBox5
+            // refreshToolStripMenuItem3
             // 
-            guna2PictureBox5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            guna2PictureBox5.CustomizableEdges = customizableEdges26;
-            guna2PictureBox5.Image = (Image)resources.GetObject("guna2PictureBox5.Image");
-            guna2PictureBox5.ImageRotate = 0F;
-            guna2PictureBox5.Location = new Point(802, 253);
-            guna2PictureBox5.Name = "guna2PictureBox5";
-            guna2PictureBox5.ShadowDecoration.CustomizableEdges = customizableEdges27;
-            guna2PictureBox5.Size = new Size(188, 161);
-            guna2PictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            guna2PictureBox5.TabIndex = 38;
-            guna2PictureBox5.TabStop = false;
+            refreshToolStripMenuItem3.Name = "refreshToolStripMenuItem3";
+            refreshToolStripMenuItem3.Size = new Size(113, 22);
+            refreshToolStripMenuItem3.Text = "Refresh";
             // 
-            // label11
+            // lblDate
             // 
-            label11.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label11.AutoSize = true;
-            label11.Location = new Point(872, 199);
-            label11.Name = "label11";
-            label11.Size = new Size(71, 15);
-            label11.TabIndex = 35;
-            label11.Text = "@Username";
+            lblDate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblDate.BackColor = Color.FromArgb(126, 87, 194);
+            lblDate.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDate.ForeColor = Color.White;
+            lblDate.Location = new Point(817, 255);
+            lblDate.Name = "lblDate";
+            lblDate.Size = new Size(166, 25);
+            lblDate.TabIndex = 32;
+            lblDate.Text = ".";
+            lblDate.TextAlign = ContentAlignment.TopCenter;
+            lblDate.Click += lblDate_Click;
             // 
-            // label13
+            // lblYear
             // 
-            label13.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label13.AutoSize = true;
-            label13.Location = new Point(872, 180);
-            label13.Name = "label13";
-            label13.Size = new Size(61, 15);
-            label13.TabIndex = 35;
-            label13.Text = "Full Name";
+            lblYear.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblYear.BackColor = Color.FromArgb(126, 87, 194);
+            lblYear.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblYear.ForeColor = Color.White;
+            lblYear.Location = new Point(817, 340);
+            lblYear.Name = "lblYear";
+            lblYear.Size = new Size(166, 25);
+            lblYear.TabIndex = 32;
+            lblYear.Text = ".";
+            lblYear.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label10
+            // lblToday
             // 
-            label10.AutoSize = true;
-            label10.BackColor = Color.FromArgb(100, 181, 246);
-            label10.ForeColor = Color.White;
-            label10.Location = new Point(560, 253);
-            label10.Name = "label10";
-            label10.Size = new Size(38, 15);
-            label10.TabIndex = 32;
-            label10.Text = "label4";
+            lblToday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblToday.BackColor = Color.FromArgb(126, 87, 194);
+            lblToday.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblToday.ForeColor = Color.White;
+            lblToday.Location = new Point(817, 359);
+            lblToday.Name = "lblToday";
+            lblToday.Size = new Size(166, 32);
+            lblToday.TabIndex = 32;
+            lblToday.Text = ".";
+            lblToday.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label8
+            // lblMonth
             // 
-            label8.AutoSize = true;
-            label8.BackColor = Color.FromArgb(100, 181, 246);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(382, 253);
-            label8.Name = "label8";
-            label8.Size = new Size(38, 15);
-            label8.TabIndex = 32;
-            label8.Text = "label4";
+            lblMonth.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblMonth.BackColor = Color.FromArgb(126, 87, 194);
+            lblMonth.Font = new Font("Segoe UI", 39.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMonth.ForeColor = Color.White;
+            lblMonth.Location = new Point(817, 272);
+            lblMonth.Name = "lblMonth";
+            lblMonth.Size = new Size(166, 54);
+            lblMonth.TabIndex = 32;
+            lblMonth.Text = ".";
+            lblMonth.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label6
+            // guna2Button3
             // 
-            label6.AutoSize = true;
-            label6.BackColor = Color.FromArgb(100, 181, 246);
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(204, 253);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 32;
-            label6.Text = "label4";
-            label6.Click += label6_Click;
+            guna2Button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            guna2Button3.BorderRadius = 10;
+            guna2Button3.CustomizableEdges = customizableEdges25;
+            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button3.FillColor = Color.FromArgb(126, 87, 194);
+            guna2Button3.Font = new Font("Segoe UI", 9F);
+            guna2Button3.ForeColor = Color.FromArgb(126, 87, 194);
+            guna2Button3.HoverState.FillColor = Color.FromArgb(126, 87, 194);
+            guna2Button3.ImageAlign = HorizontalAlignment.Left;
+            guna2Button3.ImageSize = new Size(40, 40);
+            guna2Button3.Location = new Point(806, 212);
+            guna2Button3.Name = "guna2Button3";
+            guna2Button3.PressedColor = Color.FromArgb(126, 87, 194);
+            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            guna2Button3.Size = new Size(192, 195);
+            guna2Button3.TabIndex = 40;
+            guna2Button3.Text = ".";
+            guna2Button3.TextAlign = HorizontalAlignment.Left;
+            guna2Button3.Tile = true;
             // 
-            // label9
+            // lblCompletedCount
             // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.FromArgb(100, 181, 246);
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(592, 208);
-            label9.Name = "label9";
-            label9.Size = new Size(63, 30);
-            label9.TabIndex = 32;
-            label9.Text = "Total \r\nof Patients";
-            label9.TextAlign = ContentAlignment.TopCenter;
+            lblCompletedCount.BackColor = Color.FromArgb(102, 187, 106);
+            lblCompletedCount.ForeColor = Color.White;
+            lblCompletedCount.Location = new Point(520, 227);
+            lblCompletedCount.Name = "lblCompletedCount";
+            lblCompletedCount.Size = new Size(198, 41);
+            lblCompletedCount.TabIndex = 32;
+            lblCompletedCount.Text = "label4";
+            lblCompletedCount.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblInProcessCount
+            // 
+            lblInProcessCount.BackColor = Color.FromArgb(66, 165, 245);
+            lblInProcessCount.ForeColor = Color.White;
+            lblInProcessCount.Location = new Point(270, 227);
+            lblInProcessCount.Name = "lblInProcessCount";
+            lblInProcessCount.Size = new Size(199, 41);
+            lblInProcessCount.TabIndex = 32;
+            lblInProcessCount.Text = "label4";
+            lblInProcessCount.TextAlign = ContentAlignment.TopCenter;
+            lblInProcessCount.Click += label6_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.BackColor = Color.FromArgb(100, 181, 246);
+            label7.BackColor = Color.FromArgb(102, 187, 106);
+            label7.Font = new Font("Segoe UI", 14.25F);
             label7.ForeColor = Color.White;
-            label7.Location = new Point(411, 217);
+            label7.Location = new Point(584, 191);
             label7.Name = "label7";
-            label7.Size = new Size(59, 15);
+            label7.Size = new Size(93, 25);
             label7.TabIndex = 32;
             label7.Text = "Complete";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(100, 181, 246);
+            label5.BackColor = Color.FromArgb(66, 165, 245);
+            label5.Font = new Font("Segoe UI", 14.25F);
             label5.ForeColor = Color.White;
-            label5.Location = new Point(233, 217);
+            label5.Location = new Point(344, 191);
             label5.Name = "label5";
-            label5.Size = new Size(60, 15);
+            label5.Size = new Size(97, 25);
             label5.TabIndex = 32;
             label5.Text = "In Process";
             // 
-            // label3
+            // lblPendingCount
             // 
-            label3.AutoSize = true;
-            label3.BackColor = Color.FromArgb(100, 181, 246);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(26, 253);
-            label3.Name = "label3";
-            label3.Size = new Size(38, 15);
-            label3.TabIndex = 32;
-            label3.Text = "label4";
+            lblPendingCount.BackColor = Color.FromArgb(255, 167, 38);
+            lblPendingCount.ForeColor = Color.White;
+            lblPendingCount.Location = new Point(21, 227);
+            lblPendingCount.Name = "lblPendingCount";
+            lblPendingCount.Size = new Size(194, 41);
+            lblPendingCount.TabIndex = 32;
+            lblPendingCount.Text = "label4";
+            lblPendingCount.TextAlign = ContentAlignment.TopCenter;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(100, 181, 246);
+            label4.BackColor = Color.FromArgb(255, 167, 38);
+            label4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.White;
-            label4.Location = new Point(45, 217);
+            label4.Location = new Point(91, 191);
             label4.Name = "label4";
-            label4.Size = new Size(51, 15);
+            label4.Size = new Size(81, 25);
             label4.TabIndex = 32;
             label4.Text = "Pending";
             // 
-            // guna2Button3
-            // 
-            guna2Button3.BorderRadius = 10;
-            guna2Button3.CustomizableEdges = customizableEdges28;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.FromArgb(100, 181, 246);
-            guna2Button3.Font = new Font("Segoe UI", 9F);
-            guna2Button3.ForeColor = Color.FromArgb(100, 181, 246);
-            guna2Button3.HoverState.FillColor = Color.FromArgb(100, 181, 246);
-            guna2Button3.Image = (Image)resources.GetObject("guna2Button3.Image");
-            guna2Button3.ImageAlign = HorizontalAlignment.Left;
-            guna2Button3.ImageSize = new Size(40, 40);
-            guna2Button3.Location = new Point(543, 199);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.PressedColor = Color.FromArgb(100, 181, 246);
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges29;
-            guna2Button3.Size = new Size(136, 81);
-            guna2Button3.TabIndex = 31;
-            guna2Button3.Text = ".";
-            guna2Button3.TextAlign = HorizontalAlignment.Left;
-            guna2Button3.Tile = true;
-            // 
             // guna2Button2
             // 
+            guna2Button2.BackColor = Color.Transparent;
             guna2Button2.BorderRadius = 10;
-            guna2Button2.CustomizableEdges = customizableEdges30;
+            guna2Button2.CustomizableEdges = customizableEdges27;
             guna2Button2.DisabledState.BorderColor = Color.DarkGray;
             guna2Button2.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button2.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button2.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button2.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button2.FillColor = Color.FromArgb(102, 187, 106);
             guna2Button2.Font = new Font("Segoe UI", 9F);
-            guna2Button2.ForeColor = Color.FromArgb(100, 181, 246);
-            guna2Button2.HoverState.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button2.ForeColor = Color.FromArgb(102, 187, 106);
+            guna2Button2.HoverState.FillColor = Color.FromArgb(102, 187, 106);
             guna2Button2.Image = (Image)resources.GetObject("guna2Button2.Image");
             guna2Button2.ImageAlign = HorizontalAlignment.Left;
-            guna2Button2.ImageSize = new Size(40, 40);
-            guna2Button2.Location = new Point(362, 199);
+            guna2Button2.ImageSize = new Size(50, 50);
+            guna2Button2.Location = new Point(507, 155);
             guna2Button2.Name = "guna2Button2";
-            guna2Button2.PressedColor = Color.FromArgb(100, 181, 246);
-            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges31;
-            guna2Button2.Size = new Size(136, 81);
+            guna2Button2.PressedColor = Color.FromArgb(102, 187, 106);
+            guna2Button2.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2Button2.Size = new Size(223, 124);
             guna2Button2.TabIndex = 31;
             guna2Button2.Text = ".";
             guna2Button2.TextAlign = HorizontalAlignment.Left;
@@ -1052,23 +1056,23 @@
             // guna2Button1
             // 
             guna2Button1.BorderRadius = 10;
-            guna2Button1.CustomizableEdges = customizableEdges32;
+            guna2Button1.CustomizableEdges = customizableEdges29;
             guna2Button1.DisabledState.BorderColor = Color.DarkGray;
             guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button1.FillColor = Color.FromArgb(66, 165, 245);
             guna2Button1.Font = new Font("Segoe UI", 9F);
-            guna2Button1.ForeColor = Color.FromArgb(100, 181, 246);
-            guna2Button1.HoverState.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button1.ForeColor = Color.FromArgb(66, 165, 245);
+            guna2Button1.HoverState.FillColor = Color.FromArgb(66, 165, 245);
             guna2Button1.Image = (Image)resources.GetObject("guna2Button1.Image");
             guna2Button1.ImageAlign = HorizontalAlignment.Left;
-            guna2Button1.ImageSize = new Size(40, 40);
-            guna2Button1.Location = new Point(185, 199);
+            guna2Button1.ImageSize = new Size(50, 50);
+            guna2Button1.Location = new Point(257, 155);
             guna2Button1.Name = "guna2Button1";
-            guna2Button1.PressedColor = Color.FromArgb(100, 181, 246);
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges33;
-            guna2Button1.Size = new Size(136, 81);
+            guna2Button1.PressedColor = Color.FromArgb(66, 165, 245);
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            guna2Button1.Size = new Size(223, 124);
             guna2Button1.TabIndex = 31;
             guna2Button1.Text = ".";
             guna2Button1.TextAlign = HorizontalAlignment.Left;
@@ -1077,23 +1081,23 @@
             // guna2Button4
             // 
             guna2Button4.BorderRadius = 10;
-            guna2Button4.CustomizableEdges = customizableEdges34;
+            guna2Button4.CustomizableEdges = customizableEdges31;
             guna2Button4.DisabledState.BorderColor = Color.DarkGray;
             guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
             guna2Button4.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             guna2Button4.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button4.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button4.FillColor = Color.FromArgb(255, 167, 38);
             guna2Button4.Font = new Font("Segoe UI", 9F);
-            guna2Button4.ForeColor = Color.FromArgb(100, 181, 246);
-            guna2Button4.HoverState.FillColor = Color.FromArgb(100, 181, 246);
+            guna2Button4.ForeColor = Color.FromArgb(255, 167, 38);
+            guna2Button4.HoverState.FillColor = Color.FromArgb(255, 167, 38);
             guna2Button4.Image = (Image)resources.GetObject("guna2Button4.Image");
             guna2Button4.ImageAlign = HorizontalAlignment.Left;
-            guna2Button4.ImageSize = new Size(35, 33);
-            guna2Button4.Location = new Point(6, 199);
+            guna2Button4.ImageSize = new Size(50, 50);
+            guna2Button4.Location = new Point(6, 158);
             guna2Button4.Name = "guna2Button4";
-            guna2Button4.PressedColor = Color.FromArgb(100, 181, 246);
-            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges35;
-            guna2Button4.Size = new Size(136, 81);
+            guna2Button4.PressedColor = Color.FromArgb(255, 167, 38);
+            guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            guna2Button4.Size = new Size(223, 124);
             guna2Button4.TabIndex = 31;
             guna2Button4.Text = ".";
             guna2Button4.TextAlign = HorizontalAlignment.Left;
@@ -1102,20 +1106,20 @@
             // fbtnScanBarcode
             // 
             fbtnScanBarcode.BorderRadius = 10;
-            fbtnScanBarcode.CustomizableEdges = customizableEdges36;
+            fbtnScanBarcode.CustomizableEdges = customizableEdges33;
             fbtnScanBarcode.DisabledState.BorderColor = Color.DarkGray;
             fbtnScanBarcode.DisabledState.CustomBorderColor = Color.DarkGray;
             fbtnScanBarcode.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             fbtnScanBarcode.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            fbtnScanBarcode.FillColor = Color.FromArgb(100, 181, 246);
-            fbtnScanBarcode.Font = new Font("Segoe UI", 9F);
+            fbtnScanBarcode.FillColor = Color.FromArgb(126, 87, 194);
+            fbtnScanBarcode.Font = new Font("Segoe UI", 12F);
             fbtnScanBarcode.ForeColor = Color.White;
             fbtnScanBarcode.Image = (Image)resources.GetObject("fbtnScanBarcode.Image");
             fbtnScanBarcode.ImageSize = new Size(40, 40);
             fbtnScanBarcode.Location = new Point(543, 326);
             fbtnScanBarcode.Name = "fbtnScanBarcode";
             fbtnScanBarcode.PressedColor = Color.FromArgb(80, 145, 197);
-            fbtnScanBarcode.ShadowDecoration.CustomizableEdges = customizableEdges37;
+            fbtnScanBarcode.ShadowDecoration.CustomizableEdges = customizableEdges34;
             fbtnScanBarcode.Size = new Size(136, 81);
             fbtnScanBarcode.TabIndex = 25;
             fbtnScanBarcode.Text = "Scan Barcode";
@@ -1124,20 +1128,20 @@
             // fbtnPrintBarcode
             // 
             fbtnPrintBarcode.BorderRadius = 10;
-            fbtnPrintBarcode.CustomizableEdges = customizableEdges38;
+            fbtnPrintBarcode.CustomizableEdges = customizableEdges35;
             fbtnPrintBarcode.DisabledState.BorderColor = Color.DarkGray;
             fbtnPrintBarcode.DisabledState.CustomBorderColor = Color.DarkGray;
             fbtnPrintBarcode.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             fbtnPrintBarcode.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             fbtnPrintBarcode.FillColor = Color.FromArgb(100, 181, 246);
-            fbtnPrintBarcode.Font = new Font("Segoe UI", 9F);
+            fbtnPrintBarcode.Font = new Font("Segoe UI", 12F);
             fbtnPrintBarcode.ForeColor = Color.White;
             fbtnPrintBarcode.Image = (Image)resources.GetObject("fbtnPrintBarcode.Image");
             fbtnPrintBarcode.ImageSize = new Size(40, 40);
             fbtnPrintBarcode.Location = new Point(362, 326);
             fbtnPrintBarcode.Name = "fbtnPrintBarcode";
             fbtnPrintBarcode.PressedColor = Color.FromArgb(80, 145, 197);
-            fbtnPrintBarcode.ShadowDecoration.CustomizableEdges = customizableEdges39;
+            fbtnPrintBarcode.ShadowDecoration.CustomizableEdges = customizableEdges36;
             fbtnPrintBarcode.Size = new Size(136, 81);
             fbtnPrintBarcode.TabIndex = 25;
             fbtnPrintBarcode.Text = "Print Barcode";
@@ -1145,21 +1149,22 @@
             // 
             // fbtnAddUser
             // 
+            fbtnAddUser.BackColor = Color.Transparent;
             fbtnAddUser.BorderRadius = 10;
-            fbtnAddUser.CustomizableEdges = customizableEdges40;
+            fbtnAddUser.CustomizableEdges = customizableEdges37;
             fbtnAddUser.DisabledState.BorderColor = Color.DarkGray;
             fbtnAddUser.DisabledState.CustomBorderColor = Color.DarkGray;
             fbtnAddUser.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             fbtnAddUser.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            fbtnAddUser.FillColor = Color.FromArgb(100, 181, 246);
-            fbtnAddUser.Font = new Font("Segoe UI", 9F);
+            fbtnAddUser.FillColor = Color.FromArgb(102, 187, 106);
+            fbtnAddUser.Font = new Font("Segoe UI", 12F);
             fbtnAddUser.ForeColor = Color.White;
             fbtnAddUser.Image = (Image)resources.GetObject("fbtnAddUser.Image");
             fbtnAddUser.ImageSize = new Size(40, 40);
             fbtnAddUser.Location = new Point(185, 326);
             fbtnAddUser.Name = "fbtnAddUser";
             fbtnAddUser.PressedColor = Color.FromArgb(80, 145, 197);
-            fbtnAddUser.ShadowDecoration.CustomizableEdges = customizableEdges41;
+            fbtnAddUser.ShadowDecoration.CustomizableEdges = customizableEdges38;
             fbtnAddUser.Size = new Size(136, 81);
             fbtnAddUser.TabIndex = 25;
             fbtnAddUser.Text = "Add User";
@@ -1167,21 +1172,22 @@
             // 
             // fbtnAddPatient
             // 
+            fbtnAddPatient.BackColor = Color.Transparent;
             fbtnAddPatient.BorderRadius = 10;
-            fbtnAddPatient.CustomizableEdges = customizableEdges42;
+            fbtnAddPatient.CustomizableEdges = customizableEdges39;
             fbtnAddPatient.DisabledState.BorderColor = Color.DarkGray;
             fbtnAddPatient.DisabledState.CustomBorderColor = Color.DarkGray;
             fbtnAddPatient.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             fbtnAddPatient.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            fbtnAddPatient.FillColor = Color.FromArgb(100, 181, 246);
-            fbtnAddPatient.Font = new Font("Segoe UI", 9F);
+            fbtnAddPatient.FillColor = Color.FromArgb(255, 183, 77);
+            fbtnAddPatient.Font = new Font("Segoe UI", 12F);
             fbtnAddPatient.ForeColor = Color.White;
             fbtnAddPatient.Image = (Image)resources.GetObject("fbtnAddPatient.Image");
             fbtnAddPatient.ImageSize = new Size(40, 40);
             fbtnAddPatient.Location = new Point(6, 326);
             fbtnAddPatient.Name = "fbtnAddPatient";
             fbtnAddPatient.PressedColor = Color.FromArgb(80, 145, 197);
-            fbtnAddPatient.ShadowDecoration.CustomizableEdges = customizableEdges43;
+            fbtnAddPatient.ShadowDecoration.CustomizableEdges = customizableEdges40;
             fbtnAddPatient.Size = new Size(136, 81);
             fbtnAddPatient.TabIndex = 25;
             fbtnAddPatient.Text = "Add Patient";
@@ -1191,7 +1197,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 159);
+            label2.Location = new Point(3, 118);
             label2.Name = "label2";
             label2.Size = new Size(139, 37);
             label2.TabIndex = 24;
@@ -1284,12 +1290,12 @@
             // guna2PictureBox4
             // 
             guna2PictureBox4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            guna2PictureBox4.CustomizableEdges = customizableEdges44;
+            guna2PictureBox4.CustomizableEdges = customizableEdges41;
             guna2PictureBox4.Image = (Image)resources.GetObject("guna2PictureBox4.Image");
             guna2PictureBox4.ImageRotate = 0F;
             guna2PictureBox4.Location = new Point(3, 3);
             guna2PictureBox4.Name = "guna2PictureBox4";
-            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges45;
+            guna2PictureBox4.ShadowDecoration.CustomizableEdges = customizableEdges42;
             guna2PictureBox4.Size = new Size(1004, 100);
             guna2PictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2PictureBox4.TabIndex = 21;
@@ -1318,6 +1324,10 @@
             // 
             timer1.Interval = 300;
             // 
+            // timer2
+            // 
+            timer2.Tick += timer2_Tick;
+            // 
             // Rapha_LIS
             // 
             AccessibleRole = AccessibleRole.None;
@@ -1337,21 +1347,20 @@
             WindowState = FormWindowState.Maximized;
             Load += Rapha_LIS_Load;
             PatientAnalytics.ResumeLayout(false);
-            guna2ContextMenuStrip3.ResumeLayout(false);
+            cmsPatientAnalytics.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvAnalyticsPatients).EndInit();
             UserManagement.ResumeLayout(false);
-            guna2ContextMenuStrip2.ResumeLayout(false);
+            cmsUserManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvUserControl).EndInit();
             PatientManagement.ResumeLayout(false);
-            guna2ContextMenuStrip1.ResumeLayout(false);
+            cmsPatientManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvPatientControl).EndInit();
             Dashboard.ResumeLayout(false);
             Dashboard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)guna2PictureBox5).EndInit();
+            cmsDashboard.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDashboard).EndInit();
             ((System.ComponentModel.ISupportInitialize)guna2PictureBox4).EndInit();
             materialTabControl1.ResumeLayout(false);
@@ -1366,7 +1375,7 @@
         private TabPage UserManagement;
         private TabPage PatientManagement;
         private TabPage Dashboard;
-        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        public MaterialSkin.Controls.MaterialTabControl materialTabControl1;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPatientControl;
         private System.Windows.Forms.Timer timer1;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPatientControl;
@@ -1383,12 +1392,12 @@
         private Guna.UI2.WinForms.Guna2Button btnAddUser;
         private Guna.UI2.WinForms.Guna2TextBox txtAnalyticsSearch;
         private Guna.UI2.WinForms.Guna2Button btnPrintResult;
-        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsPatientManagement;
         private ToolStripMenuItem refreshToolStripMenuItem;
         private ToolStripMenuItem addPatientToolStripMenuItem;
         private ToolStripMenuItem printBarcodeToolStripMenuItem;
-        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip2;
-        private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip3;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsUserManagement;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsPatientAnalytics;
         private ToolStripMenuItem refreshToolStripMenuItem2;
         private ToolStripMenuItem printResultToolStripMenuItem;
         private ToolStripMenuItem refreshToolStripMenuItem1;
@@ -1407,20 +1416,21 @@
         private Guna.UI2.WinForms.Guna2Button fbtnAddUser;
         private Label label4;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Label label10;
-        private Label label8;
-        private Label label6;
-        private Label label9;
+        private Label lblCompletedCount;
+        private Label lblInProcessCount;
         private Label label7;
         private Label label5;
-        private Label label3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Label lblPendingCount;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Label label11;
-        private Label label13;
-        private Guna.UI2.WinForms.Guna2CirclePictureBox guna2CirclePictureBox1;
-        private Guna.UI2.WinForms.Guna2PictureBox guna2PictureBox5;
+        private Guna.UI2.WinForms.Guna2ContextMenuStrip cmsDashboard;
+        private ToolStripMenuItem refreshToolStripMenuItem3;
+        private Label lblToday;
+        private Label lblMonth;
+        private Label lblDate;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Label lblYear;
+        private System.Windows.Forms.Timer timer2;
         //private Guna.UI2.WinForms.Guna2Button btnAddUser;
     }
 }

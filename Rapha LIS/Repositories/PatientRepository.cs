@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.ApplicationServices;
 using MVP_LEARNING.Repositories;
 using Rapha_LIS.Data;
+using Rapha_LIS.Helpers;
 using Rapha_LIS.Models;
 using System;
 using System.Collections.Generic;
@@ -245,6 +246,8 @@ namespace Rapha_LIS.Repositories
             return _context.Leukocytes.ToList();
         }
 
+        //Dashboard
+
         public List<PatientModel> GetSome()
         {
             return _context.Patients
@@ -253,6 +256,20 @@ namespace Rapha_LIS.Repositories
                 .Take(50)
                 .ToList();
         }
+
+        public List<PatientModel> GetAllPatientsCount()
+        {
+            return _context.Patients
+                .AsNoTracking()
+                .Select(p => new PatientModel
+                {
+                    Id = p.Id,
+                    MedTech = p.MedTech,
+                    TestResult = p.TestResult,
+                    LeukocytesResult = p.LeukocytesResult,
+                })
+                .ToList();
+                }
     }
 
     static class SqlDataReaderExtensions

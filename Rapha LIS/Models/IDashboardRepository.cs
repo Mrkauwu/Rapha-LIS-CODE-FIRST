@@ -8,6 +8,7 @@ namespace Rapha_LIS.Models
 {
     public interface IDashboardRepository
     {
+        List<PatientModel> GetAllPatientsCount();
         List<PatientModel> GetSome();
     }
 }

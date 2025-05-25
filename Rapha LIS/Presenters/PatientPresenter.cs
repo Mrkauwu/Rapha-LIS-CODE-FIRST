@@ -32,7 +32,7 @@ namespace Rapha_LIS.Presenters
     {
 
         //Dashboard
-        private readonly IDashboard dashboardView;
+        private readonly IDashboardView dashboardView;
         private BindingSource dashboardBindingSource;
         private readonly IDashboardRepository dashboardRepository;
         private List<PatientModel> patientList;
@@ -64,13 +64,14 @@ namespace Rapha_LIS.Presenters
 
         public PatientPresenter(IPatientControlView patientView, IPatientControlRepository patientRepository,
                                 IPatientAnalyticsView patientAnalyticsView, IAnalyticsRepository analyticsRepository
-                                , ITestListView testList, ITestListRepository testListRepository, ILeukocytesListView leukocytesListView, ILeukocytesListRepository leukocytesListRepository, IDashboard dashboardView, IDashboardRepository dashboardRepository)
+                                , ITestListView testList, ITestListRepository testListRepository, ILeukocytesListView leukocytesListView, ILeukocytesListRepository leukocytesListRepository, IDashboardView dashboardView, IDashboardRepository dashboardRepository)
         {
             //Dashboard
             this.dashboardView = dashboardView ?? throw new ArgumentNullException(nameof(dashboardView));
             this.dashboardRepository = dashboardRepository ?? throw new ArgumentNullException(nameof(dashboardRepository));
             this.dashboardBindingSource = new BindingSource();  // ✅ Initialize first
             this.dashboardView.BindDashboardList(dashboardBindingSource);  // ✅ Now it's not null
+            this.dashboardView.DashboardRefreshRequested += DashboardView_DashboardRefreshRequested;
 
             //LeukocytesList
             this.leukocytesListView = leukocytesListView ?? throw new ArgumentNullException(nameof(leukocytesListView));
@@ -120,7 +121,49 @@ namespace Rapha_LIS.Presenters
             LoadAllPatientList();
             LoadTestList();
             LoadLeukocytesList();
+            LoadDashboard();
+
         }
+
+
+
+        //Dashboard
+
+        public void LoadDashboard()
+        {
+
+
+            var patients = dashboardRepository.GetAllPatientsCount();
+
+            int pending = patients.Count(p => string.IsNullOrWhiteSpace(p.MedTech));
+
+            int inProcess = patients.Count(p =>
+                !string.IsNullOrWhiteSpace(p.MedTech) &&
+                !string.IsNullOrWhiteSpace(p.TestResult) &&
+                p.TestResult.Contains("Pending", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(p.LeukocytesResult) &&
+                p.LeukocytesResult.Contains("Pending", StringComparison.OrdinalIgnoreCase)
+                );
+
+            int complete = patients.Count(p =>
+                !string.IsNullOrWhiteSpace(p.TestResult) &&
+                !p.TestResult.Contains("Pending", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(p.LeukocytesResult) &&
+                !p.LeukocytesResult.Contains("Pending", StringComparison.OrdinalIgnoreCase)
+
+            );
+
+            dashboardView.SetPendingCount(pending);
+            dashboardView.SetInProcessCount(inProcess);
+            dashboardView.SetCompleteCount(complete);
+        }
+        private void DashboardView_DashboardRefreshRequested(object? sender, EventArgs e)
+        {
+            LoadDashboard();
+            patientList = dashboardRepository.GetSome().ToList();
+            dashboardBindingSource.DataSource = patientList;
+        }
+
 
         private void PatientView_LogoutRequested(object? sender, EventArgs e)
         {

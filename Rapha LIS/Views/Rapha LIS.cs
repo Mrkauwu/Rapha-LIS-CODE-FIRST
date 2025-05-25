@@ -19,7 +19,7 @@ using System.Windows.Forms;
 
 namespace Rapha_LIS.Views
 {
-    public partial class Rapha_LIS : MaterialForm, IPatientControlView, IUserControlView, IPatientAnalyticsView, IDashboard
+    public partial class Rapha_LIS : MaterialForm, IPatientControlView, IUserControlView, IPatientAnalyticsView, IDashboardView
     {
         private bool isEdit;
         private int? passwordVisibleRowIndex = null;
@@ -47,30 +47,64 @@ namespace Rapha_LIS.Views
 
             label2.Font = new Font("Segoe UI", 20);
             label1.Font = new Font("Segoe UI", 20);
+            label4.Font = new Font("Segoe UI", 14);
+            label5.Font = new Font("Segoe UI", 14);
+            label7.Font = new Font("Segoe UI", 14);
+            lblPendingCount.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+            lblCompletedCount.Font = new Font("Segoe UI", 18, FontStyle.Bold);
+            lblInProcessCount.Font = new Font("Segoe UI", 18, FontStyle.Bold);
             Color myColor = System.Drawing.Color.FromArgb(100, 181, 246);
             Color foreColor = Color.White;
-            label3.BackColor = myColor;
-            label3.ForeColor = foreColor;
-            label4.BackColor = myColor;
+            lblPendingCount.BackColor = Color.FromArgb(255, 167, 38);
+            lblPendingCount.ForeColor = foreColor;
+            label4.BackColor = Color.FromArgb(255, 167, 38);
             label4.ForeColor = foreColor;
-            label5.BackColor = myColor;
+            label5.BackColor = Color.FromArgb(66, 165, 245);
             label5.ForeColor = foreColor;
-            label6.BackColor = myColor;
-            label6.ForeColor = foreColor;
-            label7.BackColor = myColor;
+            lblInProcessCount.BackColor = Color.FromArgb(66, 165, 245);
+            lblInProcessCount.ForeColor = foreColor;
+            label7.BackColor = Color.FromArgb(102, 187, 106);
             label7.ForeColor = foreColor;
-            label8.BackColor = myColor;
-            label8.ForeColor = foreColor;
-            label9.BackColor = myColor;
-            label9.ForeColor = foreColor;
-            label10.BackColor = myColor;
-            label10.ForeColor = foreColor;
+
+            lblCompletedCount.BackColor = Color.FromArgb(102, 187, 106);
+            lblCompletedCount.ForeColor = foreColor;
+
+            lblCompletedCount.ForeColor = foreColor;
 
             fbtnAddPatient.ForeColor = Color.White;
             fbtnAddUser.ForeColor = Color.White;
             fbtnPrintBarcode.ForeColor = Color.White;
             fbtnScanBarcode.ForeColor = Color.White;
 
+            lblToday.ForeColor = foreColor;
+            lblMonth.ForeColor = foreColor;
+            lblYear.ForeColor = foreColor;
+            lblDate.ForeColor = foreColor;
+
+            lblToday.BackColor = Color.FromArgb(126, 87, 194);
+            lblDate.BackColor = Color.FromArgb(126, 87, 194);
+            lblMonth.BackColor = Color.FromArgb(126, 87, 194);
+            lblYear.BackColor = Color.FromArgb(126, 87, 194);
+
+
+            lblDate.Font = new Font("Montserrat", 14, FontStyle.Bold);
+            lblYear.Font = new Font("Montserrat", 14, FontStyle.Bold);
+            lblMonth.Font = new Font("Raleway", 42, FontStyle.Bold);
+            lblToday.Font = new Font("Montserrat", 18, FontStyle.Bold);
+
+            timer2.Start();
+            SetDateTime();
+        }
+
+        private void SetDateTime()
+        {
+            DateTime now = DateTime.Now;
+
+            lblToday.Text = now.ToString("dddd");
+            lblDate.Text = now.ToString("MMMM");
+            lblMonth.Text = now.ToString("dd");
+            lblYear.Text = now.Year.ToString();
+            lblToday.TextAlign = ContentAlignment.MiddleCenter;
 
         }
 
@@ -109,6 +143,8 @@ namespace Rapha_LIS.Views
                 materialTabControl1.SelectedTab = UserManagement;
                 UserAddRequested?.Invoke(this, EventArgs.Empty);
             };
+
+            refreshToolStripMenuItem3.Click += (s, e) => DashboardRefreshRequested?.Invoke(this, EventArgs.Empty);
 
             fbtnPrintBarcode.Click += (s, e) => materialTabControl1.SelectedTab = PatientManagement;
 
@@ -409,7 +445,7 @@ namespace Rapha_LIS.Views
             }
         }
 
-        private void materialTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        public void materialTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage.Text == "Logout") // or check by tab index or name
             {
@@ -464,9 +500,25 @@ namespace Rapha_LIS.Views
             }
         }
 
+        //Dashboard
         public void BindDashboardList(BindingSource dashboardList)
         {
             dgvDashboard.DataSource = dashboardList;
+        }
+
+        public void SetPendingCount(int count)
+        {
+            lblPendingCount.Text = count.ToString();
+        }
+
+        public void SetInProcessCount(int count)
+        {
+            lblInProcessCount.Text = count.ToString();
+        }
+
+        public void SetCompleteCount(int count)
+        {
+            lblCompletedCount.Text = count.ToString();
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -497,6 +549,30 @@ namespace Rapha_LIS.Views
                 dgvDashboard.Columns["BarcodeID"].Visible = false;
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            SetDateTime();
+        }
+
+        private void lblDate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMonth_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
         //IPatientControlView Eventhandler
         public event EventHandler? SearchRequestedByName;
         public event EventHandler? AddPatientRequested;
@@ -522,5 +598,7 @@ namespace Rapha_LIS.Views
         public event EventHandler? RefreshAnalyticsRequested;
         public event EventHandler? SearchRequestedByHIR;
 
+        //Dashboard
+        public event EventHandler DashboardRefreshRequested;
     }
 }
