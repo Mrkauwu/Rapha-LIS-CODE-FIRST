@@ -38,6 +38,7 @@ namespace Rapha_LIS
                     services.AddTransient<ITestListRepository, PatientRepository>();
                     services.AddTransient<ILeukocytesListRepository, PatientRepository>();
                     services.AddTransient<IUserControlRepository, UserRepository>();
+                    services.AddTransient<IDashboardRepository, PatientRepository>();
 
                     // Views
                     services.AddTransient<SigninView>();
@@ -52,6 +53,7 @@ namespace Rapha_LIS
                     services.AddSingleton<IPatientControlView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
                     services.AddSingleton<IPatientAnalyticsView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
                     services.AddSingleton<IUserControlView>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
+                    services.AddSingleton<IDashboard>(p => p.GetRequiredService<Rapha_LIS.Views.Rapha_LIS>());
 
                     // Presenters
                     services.AddTransient<SigninPresenter>();
@@ -90,6 +92,7 @@ namespace Rapha_LIS
                     var testListRepo = services.GetRequiredService<ITestListRepository>();
                     var leukocytesListView = services.GetRequiredService<LeukocytesListView>();
                     var leukocytesListRepo = services.GetRequiredService<ILeukocytesListRepository>();
+                    var dashboardRepo = services.GetRequiredService<IDashboardRepository>();
 
                     var patientPresenter = new PatientPresenter(
                         (IPatientControlView)mainForm,
@@ -99,7 +102,11 @@ namespace Rapha_LIS
                         testListView,
                         testListRepo,
                         leukocytesListView,
-                        leukocytesListRepo
+                        leukocytesListRepo,
+                        (IDashboard)mainForm,
+                        dashboardRepo
+
+
 
                     );
 

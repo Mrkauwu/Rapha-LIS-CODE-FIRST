@@ -29,7 +29,6 @@ namespace Rapha_LIS.Views
             InitializeComponent();
             AssociateAndRaiseViewEvents();
 
-
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -45,6 +44,32 @@ namespace Rapha_LIS.Views
             dgvPatientControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvUserControl.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             dgvAnalyticsPatients.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+
+            label2.Font = new Font("Segoe UI", 20);
+            label1.Font = new Font("Segoe UI", 20);
+            Color myColor = System.Drawing.Color.FromArgb(100, 181, 246);
+            Color foreColor = Color.White;
+            label3.BackColor = myColor;
+            label3.ForeColor = foreColor;
+            label4.BackColor = myColor;
+            label4.ForeColor = foreColor;
+            label5.BackColor = myColor;
+            label5.ForeColor = foreColor;
+            label6.BackColor = myColor;
+            label6.ForeColor = foreColor;
+            label7.BackColor = myColor;
+            label7.ForeColor = foreColor;
+            label8.BackColor = myColor;
+            label8.ForeColor = foreColor;
+            label9.BackColor = myColor;
+            label9.ForeColor = foreColor;
+            label10.BackColor = myColor;
+            label10.ForeColor = foreColor;
+
+            fbtnAddPatient.ForeColor = Color.White;
+            fbtnAddUser.ForeColor = Color.White;
+            fbtnPrintBarcode.ForeColor = Color.White;
+            fbtnScanBarcode.ForeColor = Color.White;
 
 
         }
@@ -72,6 +97,23 @@ namespace Rapha_LIS.Views
 
         private void AssociateAndRaiseViewEvents()
         {
+            //Dashboard TabPage
+            fbtnAddPatient.Click += (s, e) =>
+            {
+                materialTabControl1.SelectedTab = PatientManagement;
+                AddPatientRequested?.Invoke(this, EventArgs.Empty);
+            };
+
+            fbtnAddUser.Click += (s, e) =>
+            {
+                materialTabControl1.SelectedTab = UserManagement;
+                UserAddRequested?.Invoke(this, EventArgs.Empty);
+            };
+
+            fbtnPrintBarcode.Click += (s, e) => materialTabControl1.SelectedTab = PatientManagement;
+
+            fbtnScanBarcode.Click += (s, e) => materialTabControl1.SelectedTab = PatientAnalytics;
+
             // PatientControl TabPage
             btnAddPatient.Click += (s, e) => AddPatientRequested?.Invoke(this, EventArgs.Empty);
             txtPatientControlSearch.TextChanged += (s, e) => StartSearchTimer("Patient");
@@ -192,7 +234,6 @@ namespace Rapha_LIS.Views
             dgvAnalyticsPatients.DataSource = patientAnalyticsList;
 
         }
-
 
         public List<int> SelectedPatient =>
             dgvPatientControl.SelectedRows
@@ -426,6 +467,34 @@ namespace Rapha_LIS.Views
         public void BindDashboardList(BindingSource dashboardList)
         {
             dgvDashboard.DataSource = dashboardList;
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDashboard_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            var headers = new Dictionary<string, string>
+        {
+            { "TestResult", "Result" },
+            { "NormalValue", "Normal Value" },
+            { "LeukocytesResult", "Leukocytes Result" },
+            { "LeukocytesNormalValue", "Normal Value" },
+            { "Age", "Patient Age" },
+            { "Sex", "Gender" },
+        };
+
+            foreach (var pair in headers)
+            {
+                if (dgvDashboard.Columns.Contains(pair.Key))
+                    dgvDashboard.Columns[pair.Key].HeaderText = pair.Value;
+            }
+
+            if (dgvDashboard.Columns.Contains("BarcodeID"))
+                dgvDashboard.Columns["BarcodeID"].Visible = false;
         }
 
         //IPatientControlView Eventhandler

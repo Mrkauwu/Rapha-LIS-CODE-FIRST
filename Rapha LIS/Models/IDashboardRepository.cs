@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Rapha_LIS.Views
+namespace Rapha_LIS.Models
 {
-    public interface IDashboard
+    public interface IDashboardRepository
     {
-        void BindDashboardList(BindingSource dashboardList);
-
+        List<PatientModel> GetSome();
     }
 }

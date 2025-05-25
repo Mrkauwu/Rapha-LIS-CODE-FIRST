@@ -16,7 +16,7 @@ using Xceed.Document.NET;
 
 namespace Rapha_LIS.Repositories
 {
-    public class PatientRepository : BaseRepository, IPatientControlRepository, IAnalyticsRepository, ITestListRepository, ILeukocytesListRepository
+    public class PatientRepository : BaseRepository, IPatientControlRepository, IAnalyticsRepository, ITestListRepository, ILeukocytesListRepository, IDashboardRepository
     {
         private readonly AppDbContext _context;
         public PatientRepository(AppDbContext context)
@@ -243,6 +243,15 @@ namespace Rapha_LIS.Repositories
         public IEnumerable<LeukocytesModel> GetAllLeukocytes()
         {
             return _context.Leukocytes.ToList();
+        }
+
+        public List<PatientModel> GetSome()
+        {
+            return _context.Patients
+                .OrderByDescending(p => p.DateCreated) // Order by DateCreated (descending)
+                .AsNoTracking() // Improves performance for read-only queries\
+                .Take(50)
+                .ToList();
         }
     }
 

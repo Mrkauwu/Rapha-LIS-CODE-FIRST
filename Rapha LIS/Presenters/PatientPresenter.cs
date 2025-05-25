@@ -30,6 +30,13 @@ namespace Rapha_LIS.Presenters
 {
     public class PatientPresenter
     {
+
+        //Dashboard
+        private readonly IDashboard dashboardView;
+        private BindingSource dashboardBindingSource;
+        private readonly IDashboardRepository dashboardRepository;
+        private List<PatientModel> patientList;
+
         //Analytics
         private readonly IPatientAnalyticsView patientAnalyticsView;
         private readonly IAnalyticsRepository analyticsRepository;
@@ -57,8 +64,13 @@ namespace Rapha_LIS.Presenters
 
         public PatientPresenter(IPatientControlView patientView, IPatientControlRepository patientRepository,
                                 IPatientAnalyticsView patientAnalyticsView, IAnalyticsRepository analyticsRepository
-                                , ITestListView testList, ITestListRepository testListRepository, ILeukocytesListView leukocytesListView, ILeukocytesListRepository leukocytesListRepository)
+                                , ITestListView testList, ITestListRepository testListRepository, ILeukocytesListView leukocytesListView, ILeukocytesListRepository leukocytesListRepository, IDashboard dashboardView, IDashboardRepository dashboardRepository)
         {
+            //Dashboard
+            this.dashboardView = dashboardView ?? throw new ArgumentNullException(nameof(dashboardView));
+            this.dashboardRepository = dashboardRepository ?? throw new ArgumentNullException(nameof(dashboardRepository));
+            this.dashboardBindingSource = new BindingSource();  // ✅ Initialize first
+            this.dashboardView.BindDashboardList(dashboardBindingSource);  // ✅ Now it's not null
 
             //LeukocytesList
             this.leukocytesListView = leukocytesListView ?? throw new ArgumentNullException(nameof(leukocytesListView));
@@ -438,9 +450,8 @@ namespace Rapha_LIS.Presenters
             patientHRI = analyticsRepository.GetPatientHRI(SigninPresenter.LoggedInUserFullName ?? "");
             analyticsBindingSource.DataSource = patientHRI;
 
-
-
-
+            patientList = dashboardRepository.GetSome().ToList();
+            dashboardBindingSource.DataSource = patientList;
         }
 
         //Analytics
